@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>H4ck3rs L4b USBBOG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/blog/StyleAdminNoticias.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<main>
+    <header id="header" class="avar navbar-light" style="background-color: #031c32;">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    {% load static %} 
+                     <img src="{% static 'images/logo.svg' %}" width="40" height="32" alt="Logo" />
+                    <span class="nav-link px-2 text-white"><u>H4ck3rs L4b USBBOG</u></span>
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mx-auto">
+                    <li><a href="AdminIntegrantes.html" class="nav-link px-2 text-white"><u>INTEGRANTES</u></a></li>
+                    <li><a href="AdminCursos.html" class="nav-link px-2 text-white"><u>CURSOS</u></a></li>
+                    <li><a href="AdminNoticias.html" class="nav-link px-2 text-white"><u>NOTICIAS</u></a></li>
+                    <li><a href="AdminProyectos.html" class="nav-link px-2 text-white"><u>PROYECTOS</u></a></li>
+                </ul>
+
+                <div class="text-end">
+                    <a href="login.html">
+                        <button type="button" class="btn btn-outline-light me-2">CERRAR SESION</button>
+                    </a>
+                </div>
+
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+</main>
+
+<body>
+    <div class="b-example-divider"></div>
+    <h3>Noticias</h3>
+    <form id="noticiasForm" method="POST" action="{% url 'noticias_admin' %}" class= "form-control">
+        {% csrf_token %}
+        <input type="hidden" id="action" name="action">
+        <div class="formularioNoti">
+            <div class="row g-3 needs-validationPro" novalidate>
+                <div class="col-md-3">
+                    <label for="nombre_noticia" class="form-label">Nombre de la noticia</label>
+                    <input type="text" name="nombre_noticia" class="form-control" id="nombre_noticia" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="fecha_noticia" class="form-label">Fecha</label>
+                    <input type="date" name="fecha_noticia" class="form-control" id="fecha_noticia" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="link_noticia" class="form-label">Link de la noticia</label>
+                    <input type="text" name="link_noticia" class="form-control" id="link_noticia" required>
+                </div>
+                <div class="row-cols-md-3">
+                    <label for="description_noticia" class="form-label">Descripcion</label>
+                    <input type="text" name="description_noticia" class="form-control" id="description_noticia" required>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success" name="action" value="add">Crear</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <table>
+        <tr>
+            <th>ID Noticia</th>
+            <th>Nombre Noticia</th>
+            <th>Fecha Noticia</th>
+            <th>Link Noticia</th>
+            <th>Descripción Noticia</th>
+            <th>Acciones</th>
+        </tr>
+        {% for noticia in noticias %}
+        <tr id="row-{{ noticia.idnoticia }}">
+            <td>{{ noticia.idnoticia }}</td>
+            <td><input type="text" value="{{ noticia.nombre_noticia }}" class="form-control editable" readonly></td>
+            <td><input type="date" value="{{ noticia.fecha_noticia|date:"Y-m-d" }}" class="form-control editable" readonly></td>
+            <td><input type="text" value="{{ noticia.link_noticia }}" class="form-control editable" readonly></td>
+            <td><input type="text" value="{{ noticia.description_noticia }}" class="form-control editable" readonly></td>
+            <td>
+                <button class="btn btn-primary edit-btn" data-id="{{ noticia.idnoticia }}">Editar</button>
+                <button class="btn btn-success save-btn" data-id="{{ noticia.idnoticia }}" style="display:none;">Guardar</button>
+                <a href="{% url 'delete_noticia' noticia.idnoticia %}" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <script>
+        $(document).ready(function() {
+            $('.edit-btn').click(function() {
+                var idnoticia = $(this).data('id');  // Use 'id' instead of 'idnoticia'
+                var row = $('#row-' + idnoticia);
+                row.find('.editable').prop('readonly', false);
+                row.find('.edit-btn').hide();
+                row.find('.save-btn').show();
+            });
+        
+            $('.save-btn').click(function() {
+                var idnoticia = $(this).data('id');  // Use 'id' instead of 'idnoticia'
+                console.log(idnoticia);  // Imprime el valor de idnoticia para depuración
+                var row = $('#row-' + idnoticia);
+            
+                var data = {
+                    'idnoticia': idnoticia,
+                    'nombre_noticia': row.find('input').eq(0).val(),
+                    'fecha_noticia': row.find('input').eq(1).val(),
+                    'link_noticia': row.find('input').eq(2).val(),
+                    'description_noticia': row.find('input').eq(3).val(),
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                };
+            
+                $.post("{% url 'update_noticia' idnoticia=0 %}".slice(0, -2) + idnoticia + '/', data, function() {
+                    row.find('.editable').prop('readonly', true);
+                    row.find('.save-btn').hide();
+                    row.find('.edit-btn').show();
+                });
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+
+</html>
