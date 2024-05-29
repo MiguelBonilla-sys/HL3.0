@@ -3,7 +3,7 @@ from blog.Models.HistorialCambiosModel import HistorialCambios
 
 
 class Proyectos(models.Model):
-    idproyectos = models.IntegerField(primary_key=True)
+    idproyectos = models.AutoField(primary_key=True)
     nombre_proyecto = models.CharField(db_column='Nombre_Proyecto', max_length=150)  # Field name made lowercase.
     intengrantes_proyecto = models.CharField(db_column='Intengrantes_Proyecto', max_length=450)  # Field name made lowercase.
     fecha_proyecto = models.DateTimeField(db_column='Fecha_Proyecto')  # Field name made lowercase.

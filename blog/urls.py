@@ -11,6 +11,7 @@ from django.conf.urls.static import static
 
 from blog.Views.NoticiasAdminView import noticias_admin, delete_noticia, update_noticia
 from blog.Views.IntegrantesAdminView import integrantes_admin, delete_integrante
+from blog.Views.ProyectosAdminView import proyecto_admin, delete_proyecto
 urlpatterns = [
     path('', menu, name='menu'),
     path('menu.html', menu, name='menu'),
@@ -26,5 +27,9 @@ urlpatterns = [
 
     path('AdminIntegrantes.html', integrantes_admin, name='integrantes_admin'),
     path('delete_integrante/<int:idintegrantes>/', delete_integrante, name='delete_integrante'),
+
+    path('AdminProyectos.html', proyecto_admin, name='proyecto_admin'),
+    path('delete_proyecto/<int:idproyectos>/', delete_proyecto, name='delete_proyecto'),
+
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
