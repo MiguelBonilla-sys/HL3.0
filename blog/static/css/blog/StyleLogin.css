@@ -23,6 +23,7 @@ body {
 
 .login-container input[type="text"],
 .login-container input[type="password"],
+.login-container input[type="email"],
 .login-container button {
     width: 100%;
     margin-bottom: 15px;
