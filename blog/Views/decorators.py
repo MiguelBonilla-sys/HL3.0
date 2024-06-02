@@ -9,7 +9,8 @@ from django.http import JsonResponse
     
     Returns:
         function: La función decorada que verifica la autenticación y el token.
-    """
+
+"""
 
 # Este es un decorador en Python que se utiliza para asegurar que un usuario esté autenticado antes de permitirle acceder a una vista específica.
 def login_required_with_token(view_func):
