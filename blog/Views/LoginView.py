@@ -35,3 +35,11 @@ def register_view(request):
             return render(request, 'blog/register.html', {'error': 'Todos los campos son obligatorios'})
     else:
         return render(request, 'blog/register.html')
+
+
+def logout_view(request):
+    response = redirect('login_view')
+    response.delete_cookie('token')  # Elimina la cookie con el token
+    return response
+
+

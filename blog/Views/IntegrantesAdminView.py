@@ -3,7 +3,9 @@ from blog.Models.IntegrantesModel import Integrantes
 from blog.Forms.IntegrantesForm import IntegrantesForm
 from django.shortcuts import get_object_or_404
 import base64
+from blog.Views.decorators import login_required_with_token
 
+@login_required_with_token
 def integrantes_admin(request):
     if request.method == 'POST':
         form = IntegrantesForm(request.POST, request.FILES)
@@ -29,6 +31,7 @@ def integrantes_admin(request):
     }
     return render(request, 'blog/AdminIntegrantes.html', context)
 
+@login_required_with_token
 def delete_integrante(request, idintegrantes):
     integrantes = get_object_or_404(Integrantes, idintegrantes=idintegrantes)
     integrantes.delete()

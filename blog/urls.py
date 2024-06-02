@@ -3,7 +3,7 @@ from blog.Views.MenuView import menu
 from blog.Views.CursosView import cursos
 from blog.Views.NoticiasView import noticias
 from blog.Views.ProyectosView import proyectos
-from blog.Views.LoginView import login_view, register_view
+from blog.Views.LoginView import login_view, register_view, logout_view
 from blog.Views.MenuAdminView import AdminMenuView
 
 from django.conf import settings
@@ -14,7 +14,7 @@ from blog.Views.IntegrantesAdminView import integrantes_admin, delete_integrante
 from blog.Views.ProyectosAdminView import proyecto_admin, delete_proyecto
 
 
-from blog.Views.views import cursos_admin, delete_curso, update_curso
+from blog.Views.CursosAdminView import cursos_admin, delete_curso, update_curso
 
 urlpatterns = [
     path('', menu, name='menu'),
@@ -24,7 +24,8 @@ urlpatterns = [
     path('menuProyect.html', proyectos, name='proyectos'),
 
     path('login.html', login_view, name='login_view'),
-    path('register/', register_view, name='register_view'),
+    path('register.html', register_view, name='register_view'),
+    path('logout/', logout_view, name='logout'),
     
     path('AdminMenu.html', AdminMenuView.as_view(), name='menu_admin'),
 
