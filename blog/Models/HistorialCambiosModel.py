@@ -1,10 +1,9 @@
 from django.db import models
-from blog.Models.UsuariosModel import Usuario
-
+from django.contrib.auth.models import User
 
 class HistorialCambios(models.Model):
     idhistorial_cambios = models.AutoField(primary_key=True)
-    idusuario = models.ForeignKey(Usuario, models.DO_NOTHING, db_column='IdUsuario')  # Field name made lowercase.
+    idusuario = models.ForeignKey(User, models.DO_NOTHING)  # Field name made lowercase.
     tabla_afectada = models.CharField(max_length=50)
     id_registro_afectado = models.IntegerField()
     campo_modificado = models.CharField(max_length=100)
