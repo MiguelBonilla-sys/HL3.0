@@ -2,6 +2,12 @@ from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 
+from blog.Models.HistorialCambiosModel import HistorialCambios
+from blog.Models.CursosModel import Cursos
+from blog.Models.IntegrantesModel import Integrantes
+from blog.Models.ProyectosModel import Proyectos
+from blog.Models.NoticiasModel import Noticias
+
 # Crear grupos
 staff_group, created = Group.objects.get_or_create(name='Staff')
 admin_group, created = Group.objects.get_or_create(name='Admin')
@@ -15,6 +21,14 @@ change_user_permission = Permission.objects.get(codename='change_user', content_
 staff_group.permissions.add(add_user_permission)
 staff_group.permissions.add(change_user_permission)
 
-# Asignar permisos al grupo de admin (todos los permisos)
-for perm in Permission.objects.all():
-    admin_group.permissions.add(perm)
+models_to_assign = [Cursos, HistorialCambios, Integrantes, Noticias, Proyectos]
+for model in models_to_assign:
+    content_type = ContentType.objects.get_for_model(model)
+    permissions = Permission.objects.filter(content_type=content_type)
+    for perm in permissions:
+        if perm.codename in ['add', 'change', 'delete', 'view']:
+            staff_group.permissions.add(perm)
+            admin_group.permissions.add(perm)
+
+# Asignar todos los permisos al grupo de admin
+admin_group.permissions.set(Permission.objects.all())
