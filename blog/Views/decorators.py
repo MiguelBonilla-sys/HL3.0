@@ -1,5 +1,6 @@
 from django.shortcuts import redirect
-from django.http import JsonResponse
+from functools import wraps
+from django.core.exceptions import PermissionDenied
 
 """
     Decorador que verifica si el usuario está autenticado y tiene un token válido.
@@ -30,3 +31,26 @@ def login_required_with_token(view_func):
     
     # El decorador devuelve la función envolvente.
     return _wrapped_view
+
+
+
+def admin_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        if request.user.is_authenticated and request.user.groups.filter(name='Admin').exists():
+            return view_func(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+    return _wrapped_view
+
+
+def admin_or_staff_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        if request.user.is_authenticated and (request.user.groups.filter(name='Admin').exists() or request.user.groups.filter(name='Staff').exists()):
+            return view_func(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+    return _wrapped_view
+
+

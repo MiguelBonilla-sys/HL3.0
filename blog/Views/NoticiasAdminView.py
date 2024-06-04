@@ -3,7 +3,6 @@ from blog.Models.NoticiasModel import Noticias
 from blog.Forms.NoticiasForm import NoticiasForm
 from blog.Views.decorators import login_required_with_token
 
-
 @login_required_with_token
 def noticias_admin(request):
     if request.method == 'POST':
@@ -24,21 +23,23 @@ def noticias_admin(request):
 
 @login_required_with_token
 def delete_noticia(request, idnoticia):
-    noticias = get_object_or_404(Noticias, idnoticia=idnoticia)
+    noticias = get_object_or_404(Noticias, id=idnoticia)
     noticias.delete()
     return redirect('noticias_admin')
 
 @login_required_with_token
 def update_noticia(request, idnoticia):
     noticia = get_object_or_404(Noticias, idnoticia=idnoticia)
-    if request.method == "POST":
-        print(request.POST)  # Imprime los datos de la solicitud POST
+    if request.method == 'POST':
         form = NoticiasForm(request.POST, instance=noticia)
         if form.is_valid():
-            form.save()  # This saves the form to the database
+            form.save()
             return redirect('noticias_admin')
-        else:
-            print(form.errors)  # Print form errors for debugging purposes
     else:
         form = NoticiasForm(instance=noticia)
-    return render(request, 'blog/AdminNoticias.html', {'form': form})
+
+    context = {
+        'form': form,
+        'noticia': noticia
+    }
+    return render(request, 'blog/UpdateNoticia.html', context)

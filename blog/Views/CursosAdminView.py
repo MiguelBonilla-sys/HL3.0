@@ -4,9 +4,12 @@ from blog.Models.CursosModel import Cursos
 from blog.Forms.Cursosform import CursosForm
 from blog.Views.decorators import login_required_with_token
 
+
 @login_required_with_token
 def cursos_admin(request):
     if request.method == 'POST':
+        print("Entra al metodo post")
+        print(request.POST)  
         form = CursosForm(request.POST)
         if form.is_valid():
             form.save()
@@ -29,11 +32,18 @@ def delete_curso(request, idcursos):
 
 @login_required_with_token
 def update_curso(request, idcursos):
+    print("inicia el update")
     cursos = get_object_or_404(Cursos, idcursos=idcursos)
+    print("Obtiene el objeto curso")
+    print(cursos)
     if request.method == "POST":
+        print("Entra al metodo post")
+        print(request.POST)  # Imprime los datos recibidos
         form = CursosForm(request.POST, instance=cursos)
         if form.is_valid():
             form.save()
+            print("Guarda el curso")
+            print(form.errors)
             return JsonResponse({'status': 'success'})
         else:
             return JsonResponse({'status': 'error', 'errors': form.errors})

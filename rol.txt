@@ -5,7 +5,7 @@
 
 /User_Admin
     Funciones:
-        - Visualización de datos cambiados, agregados y eliminados por los "User_Staff".
+        - Visualización de datos cambiados, agregados y eliminados por los "User_Staff", mediante HistorialCambios.
         - Agregar, eliminar y actualizar datos en las siguientes tablas:
             + Cursos
             + Integrantes
