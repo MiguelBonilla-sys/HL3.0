@@ -3,8 +3,6 @@ from django.shortcuts import render, redirect
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
-from rest_framework.authtoken.models import Token
-import secrets
 
 def login_view(request):
     if request.method == 'POST':
@@ -14,10 +12,10 @@ def login_view(request):
         if user is not None:
             login(request, user)
             Token.objects.filter(user=user).delete()  # Elimina el token existente
-            token = secrets.token_hex(16)  # Crea un nuevo token aleatorio
-            print(f"Token for {user.username}: {token}")  # Imprime el token en la consola
+            token = Token.objects.create(user=user)  # Crea un nuevo token
+            print(f"Token for {user.username}: {token.key}")  # Imprimir el token en la consola
             response = redirect('menu_admin')
-            response.set_cookie('token', token)  # Almacena el token en una cookie
+            response.set_cookie('token', token.key)  # Almacena el token en una cookie
             return response
         else:
             return render(request, 'blog/login.html', {'error': 'Credenciales incorrectas'})
