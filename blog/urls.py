@@ -10,10 +10,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from blog.Views.NoticiasAdminView import noticias_admin, delete_noticia, update_noticia
-from blog.Views.IntegrantesAdminView import integrantes_admin, delete_integrante
-from blog.Views.ProyectosAdminView import proyecto_admin, delete_proyecto
-
-
+from blog.Views.IntegrantesAdminView import integrantes_admin, delete_integrante, update_integrante
+from blog.Views.ProyectosAdminView import proyecto_admin, delete_proyecto, update_proyecto
 from blog.Views.CursosAdminView import cursos_admin, delete_curso, update_curso
 
 urlpatterns = [
@@ -39,9 +37,10 @@ urlpatterns = [
 
     path('AdminIntegrantes.html', integrantes_admin, name='integrantes_admin'),
     path('delete_integrante/<int:idintegrantes>/', delete_integrante, name='delete_integrante'),
+    path('update_integrante/<int:idintegrantes>/', update_integrante, name='update_integrante'),
 
     path('AdminProyectos.html', proyecto_admin, name='proyecto_admin'),
     path('delete_proyecto/<int:idproyectos>/', delete_proyecto, name='delete_proyecto'),
+    path('update_proyecto/<int:idproyectos>/', update_proyecto, name='update_proyecto'),
 
-    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

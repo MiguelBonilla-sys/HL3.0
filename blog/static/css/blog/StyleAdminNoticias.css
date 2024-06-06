@@ -57,10 +57,18 @@ table {
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: center;
+    text-align: left;
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #d442c8;
     color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.edit-btn, .save-btn, .btn-danger {
+    margin: 5px;
 }

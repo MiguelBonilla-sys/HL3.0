@@ -1,5 +1,5 @@
 from django.db import models
-from blog.Models.HistorialCambiosModel import HistorialCambios
+from django.contrib.auth.models import User as AuthUser
 
 
 class Proyectos(models.Model):
@@ -9,7 +9,7 @@ class Proyectos(models.Model):
     fecha_proyecto = models.DateTimeField(db_column='Fecha_Proyecto')  # Field name made lowercase.
     link_proyecto = models.CharField(db_column='Link_Proyecto', max_length=250)  # Field name made lowercase.
     description_proyecto = models.CharField(db_column='Description_Proyecto', max_length=450)  # Field name made lowercase.
-    historial_cambios_idhistorial_cambios = models.ForeignKey(HistorialCambios, models.DO_NOTHING, db_column='historial_cambios_idhistorial_cambios', blank=True, null=True)
+    creador = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
         managed = False

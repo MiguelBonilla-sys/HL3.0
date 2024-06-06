@@ -2,7 +2,6 @@ from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 
-from blog.Models.HistorialCambiosModel import HistorialCambios
 from blog.Models.CursosModel import Cursos
 from blog.Models.IntegrantesModel import Integrantes
 from blog.Models.ProyectosModel import Proyectos
@@ -21,7 +20,7 @@ change_user_permission = Permission.objects.get(codename='change_user', content_
 staff_group.permissions.add(add_user_permission)
 staff_group.permissions.add(change_user_permission)
 
-models_to_assign = [Cursos, HistorialCambios, Integrantes, Noticias, Proyectos]
+models_to_assign = [Cursos, Integrantes, Noticias, Proyectos]
 for model in models_to_assign:
     content_type = ContentType.objects.get_for_model(model)
     permissions = Permission.objects.filter(content_type=content_type)

@@ -9,6 +9,9 @@ def proyecto_admin(request):
     if request.method == 'POST':
         form = ProyectosForm(request.POST)
         if form.is_valid():
+            proyecto = form.save(commit=False)
+            proyecto.creador = request.user
+            proyecto.save()
             form.save()
             return redirect('proyecto_admin')
     else:
@@ -33,4 +36,4 @@ def update_proyecto(request, idproyectos):
     else:
         form = ProyectosForm(instance=proyecto)
     
-    return render(request, 'blog/AdminProyectos.html', {'form': form})
+    return redirect('proyecto_admin')

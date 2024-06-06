@@ -103,7 +103,6 @@
             <td><input type="text" name="descripcion_cursol" value="{{ curso.descripcion_cursol }}" class="form-control editable" readonly></td>
             <td>
                 <a href="{% url 'delete_curso' curso.idcursos %}" class="btn btn-danger">Eliminar</a>
-                <button class="btn btn-primary edit-btn"
                 <button class="btn btn-primary edit-btn" data-id="{{ curso.idcursos }}">Editar</button>
                 <button class="btn btn-success save-btn" data-id="{{ curso.idcursos }}" style="display:none;">Guardar</button>
             </td>

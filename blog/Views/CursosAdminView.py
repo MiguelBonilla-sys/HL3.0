@@ -8,11 +8,11 @@ from blog.Views.decorators import login_required_with_token
 @login_required_with_token
 def cursos_admin(request):
     if request.method == 'POST':
-        print("Entra al metodo post")
-        print(request.POST)  
         form = CursosForm(request.POST)
         if form.is_valid():
-            form.save()
+            curso = form.save(commit=False)
+            curso.creador = request.user
+            curso.save()
             return redirect('cursos_admin')
     else:
         form = CursosForm()
@@ -23,7 +23,6 @@ def cursos_admin(request):
         'form': form
     }
     return render(request, 'blog/AdminCursos.html', context)
-
 @login_required_with_token
 def delete_curso(request, idcursos):
     curso = get_object_or_404(Cursos, idcursos=idcursos)
