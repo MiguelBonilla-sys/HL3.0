@@ -24,6 +24,8 @@ th{
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
+    background-color: #ffae00; /* Código de color hexadecimal para azul */
+    color: white;
 }
 
 td {
@@ -36,6 +38,18 @@ td {
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+h3 {
+    display: flex;
+    margin: 20px auto 0;
+    width: 85%;
+    /* Aumenta el ancho */
+    padding: 20px;
+    /* Aumenta el padding */
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
 }
 
 .short-text, .full-text {

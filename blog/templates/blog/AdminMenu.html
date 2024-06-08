@@ -44,10 +44,11 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center">Bienvenido Administrador</h1>
+                <h3>Bienvenido Administrador</h3>
             </div>
         </div>
     </div>
+    <div class="container">
         <table>
             <thead>
                 <tr>
@@ -72,7 +73,7 @@
                         <td>{{ log.affected_record_id }}</td>
                         <td>
                             <div class="short-text">{{ log.modified_data|truncatechars:50 }}</div>
-                            <div class="full-text" style="display: none;">{{ log.modified_data }}</div>
+                            <div class="full-text" style="display: none; word-wrap: break-word;">{{ log.modified_data }}</div>
                             <button class="read-more">Leer más</button>
                         </td>
                     </tr>
@@ -80,12 +81,11 @@
             </tbody>
         </table>
     {% else %}
-
-    
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center">Bienvenido Usuario</h1>
+                <h3>Bienvenido Usuario</h3>
             </div>
         </div>  
     </div>  
