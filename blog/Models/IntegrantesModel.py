@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User as AuthUser
+from django.contrib.auth.models import User
 
 class Integrantes(models.Model):
     idintegrantes = models.AutoField(primary_key=True)
@@ -8,8 +8,7 @@ class Integrantes(models.Model):
     correo = models.CharField(max_length=100)
     link_git = models.CharField(max_length=200)
     imagen = models.TextField()
-    creador = models.ForeignKey(AuthUser, models.DO_NOTHING)
-
+    creador = models.ForeignKey(User, on_delete=models.CASCADE)
     class Meta:
         managed = False
         db_table = 'integrantes'

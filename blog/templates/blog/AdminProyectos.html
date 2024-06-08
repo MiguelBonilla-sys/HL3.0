@@ -16,16 +16,16 @@
     <header id="header" class="avar navbar-light" style="background-color: #031c32;">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <a href="{% url 'audit_log' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                     {% load static %} 
                     <img src="{% static 'images/logo-2.svg' %}" width="46" height="42" alt="Logo" />
                     <span class="nav-link px-2 text-white"><u>H4ck3rs L4b USBBOG</u></span>
                 </a>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mx-auto">
-                    <li><a href="AdminIntegrantes.html" class="nav-link px-2 text-white"><u>INTEGRANTES</u></a></li>
-                    <li><a href="AdminCursos.html" class="nav-link px-2 text-white"><u>CURSOS</u></a></li>
-                    <li><a href="AdminNoticias.html" class="nav-link px-2 text-white"><u>NOTICIAS</u></a></li>
-                    <li><a href="AdminProyectos.html" class="nav-link px-2 text-white"><u>PROYECTOS</u></a></li>
+                    <li><a href="{% url 'integrantes_admin' %}" class="nav-link px-2 text-white"><u>INTEGRANTES</u></a></li>
+                    <li><a href="{% url 'cursos_admin' %}" class="nav-link px-2 text-white"><u>CURSOS</u></a></li>
+                    <li><a href="{% url 'noticias_admin' %}" class="nav-link px-2 text-white"><u>NOTICIAS</u></a></li>
+                    <li><a href="{% url 'proyecto_admin' %}" class="nav-link px-2 text-white"><u>PROYECTOS</u></a></li>
                 </ul>
 
                 <div class="text-end">

@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
@@ -6,6 +7,14 @@ from blog.Models.CursosModel import Cursos
 from blog.Models.IntegrantesModel import Integrantes
 from blog.Models.ProyectosModel import Proyectos
 from blog.Models.NoticiasModel import Noticias
+from blog.Models.AuditLogModel import AuditLog
+
+# Registrar modelos para que aparezcan en el panel de administración
+admin.site.register(Cursos)
+admin.site.register(Integrantes)
+admin.site.register(Proyectos)
+admin.site.register(Noticias)
+admin.site.register(AuditLog)
 
 # Crear grupos
 staff_group, created = Group.objects.get_or_create(name='Staff')
@@ -20,7 +29,7 @@ change_user_permission = Permission.objects.get(codename='change_user', content_
 staff_group.permissions.add(add_user_permission)
 staff_group.permissions.add(change_user_permission)
 
-models_to_assign = [Cursos, Integrantes, Noticias, Proyectos]
+models_to_assign = [Cursos, Integrantes, Noticias, Proyectos, AuditLog]
 for model in models_to_assign:
     content_type = ContentType.objects.get_for_model(model)
     permissions = Permission.objects.filter(content_type=content_type)

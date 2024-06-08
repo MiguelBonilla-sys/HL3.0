@@ -4,6 +4,7 @@ from blog.Forms.IntegrantesForm import IntegrantesForm
 from django.shortcuts import get_object_or_404
 import base64
 from blog.Views.decorators import login_required_with_token
+
 from django.http import JsonResponse
 
 @login_required_with_token

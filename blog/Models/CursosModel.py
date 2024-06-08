@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User as AuthUser
+from django.contrib.auth.models import User
 
 class Cursos(models.Model):
     idcursos = models.AutoField(db_column='idCursos', primary_key=True)  # Field name made lowercase.
@@ -8,8 +8,7 @@ class Cursos(models.Model):
     fechafina_cursol = models.DateTimeField(db_column='FechaFina_Curso')  # Field name made lowercase.
     link_curso = models.CharField(db_column='Link_Curso', max_length=200)  # Field name made lowercase.
     descripcion_cursol = models.CharField(db_column='Descripcion_Curso', max_length=450)  # Field name made lowercase.
-    creador = models.ForeignKey(AuthUser, models.DO_NOTHING)
-
+    creador = models.ForeignKey(User, on_delete=models.CASCADE)
     class Meta:
         managed = False
         db_table = 'cursos'

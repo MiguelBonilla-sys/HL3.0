@@ -17,16 +17,16 @@
         <header id="header" class="navbar-light" style="background-color: #031c32;">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <a href="{% url 'audit_log' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                         {% load static %} 
                         <img src="{% static 'images/logo-2.svg' %}" width="46" height="42" alt="Logo" />
                         <span class="nav-link px-2 text-white"><u>H4ck3rs L4b USBBOG</u></span>
                     </a>
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mx-auto">
-                        <li><a href="AdminIntegrantes.html" class="nav-link px-2 text-white"><u>INTEGRANTES</u></a></li>
-                        <li><a href="AdminCursos.html" class="nav-link px-2 text-white"><u>CURSOS</u></a></li>
-                        <li><a href="AdminNoticias.html" class="nav-link px-2 text-white"><u>NOTICIAS</u></a></li>
-                        <li><a href="AdminProyectos.html" class="nav-link px-2 text-white"><u>PROYECTOS</u></a></li>
+                        <li><a href="{% url 'integrantes_admin' %}" class="nav-link px-2 text-white"><u>INTEGRANTES</u></a></li>
+                        <li><a href="{% url 'cursos_admin' %}" class="nav-link px-2 text-white"><u>CURSOS</u></a></li>
+                        <li><a href="{% url 'noticias_admin' %}" class="nav-link px-2 text-white"><u>NOTICIAS</u></a></li>
+                        <li><a href="{% url 'proyecto_admin' %}" class="nav-link px-2 text-white"><u>PROYECTOS</u></a></li>
                     </ul>
                     <div class="text-end">
                     <a href="{% url 'logout' %}">
@@ -40,41 +40,108 @@
             </div>
         </header>
     </main>
+    {% if  audit_logs %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Bienvenido Administrador</h1>
+            </div>
+        </div>
+    </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tiempo de accion</th>
+                    <th>Nombre de usuario</th>
+                    <th>Tabla modificada</th>
+                    <th>Acción</th>
+                    <th>Tiempo afectada</th>
+                    <th>Datos afectados</th>
+                    <!-- Agrega más columnas según los campos de tu modelo AuditLog -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in audit_logs %}
+                    <tr>
+                        <td>{{ log.id }}</td>
+                        <td>{{ log.timestamp }}</td>
+                        <td>{{ log.user }}</td>
+                        <td>{{ log.table_name }}</td>
+                        <td>{{ log.change_type }}</td>
+                        <td>{{ log.affected_record_id }}</td>
+                        <td>
+                            <div class="short-text">{{ log.modified_data|truncatechars:50 }}</div>
+                            <div class="full-text" style="display: none;">{{ log.modified_data }}</div>
+                            <button class="read-more">Leer más</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Bienvenido Usuario</h1>
+            </div>
+        </div>  
+    </div>  
+
+    {% endif %}
 
     <script>
        document.addEventListener('DOMContentLoaded', function() {
-    const tokenCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
-    if (tokenCookie) {
-        const token = tokenCookie.split('=')[1];
-        console.log('Token from cookie:', token);
-        localStorage.setItem('token', token);
-        fetchProtectedResource(token);
-    } else {
-        console.error('Token not found');
-    }
-});
+            const tokenCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
+            if (tokenCookie) {
+                const token = tokenCookie.split('=')[1];
+                console.log('Token from cookie:', token);
+                localStorage.setItem('token', token);
+                fetchProtectedResource(token);
+            } else {
+                console.error('Token not found');
+            }
+        });
 
-function fetchProtectedResource(token) {
-    console.log('Token from localStorage:', token);
-    fetch('/AdminMenu.html', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Token ${token}`
+        function fetchProtectedResource(token) {
+            console.log('Token from localStorage:', token);
+            fetch('/AdminMenu.html', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Token ${token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.body.innerHTML = data;
+            })
+            .catch(error => {
+                console.error('There was a problem with your fetch operation:', error);
+            });
         }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
-    .then(data => {
-        document.body.innerHTML = data;
-    })
-    .catch(error => {
-        console.error('There was a problem with your fetch operation:', error);
-    });
-}
+
+        document.querySelectorAll('.read-more').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var shortText = this.previousElementSibling.previousElementSibling;
+                var fullText = this.previousElementSibling;
+                if (fullText.style.display === 'none') {
+                    fullText.style.display = 'block';
+                    shortText.style.display = 'none';
+                    this.textContent = 'Leer menos';
+                } else {
+                    fullText.style.display = 'none';
+                    shortText.style.display = 'block';
+                    this.textContent = 'Leer más';
+                }
+            });
+        });
 
     </script>
 

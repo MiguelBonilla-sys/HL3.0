@@ -16,25 +16,25 @@
     <header id="header" class="avar navbar-light" style="background-color: #031c32;">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <a href="{% url 'menu' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                     {% load static %} 
                     <img src="{% static 'images\logo-2.svg' %}" width="46" height="42" alt="Logo" />
                     <span class="nav-link px-2 text-white"><u>H4ck3rs L4b USBBOG</u></span>
-                </a>
-
-
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mx-auto">
-                    <li><a href="menu.html" class="nav-link px-2 text-white"><u>INICIO</u></a></li>
-                    <li><a href="menuCursos.html" class="nav-link px-2 text-white"><u>CURSOS</u></a></li>
-                    <li><a href="menuNoticias.html" class="nav-link px-2 text-white"><u>NOTICIAS</u></a></li>
-                    <li><a href="menuProyect.html" class="nav-link px-2 text-white"><u>PROYECTOS</u></a></li>
-                </ul>
-
-                <div class="text-end">
-                    <a href="login.html">
-                        <button type="button" class="btn btn-outline-light me-2">INGRESAR</button>
-                    </a>
-                </div>
+                  </a>
+  
+  
+                  <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mx-auto">
+                      <li><a href="{% url 'menu' %}" class="nav-link px-2 text-white"><u>INICIO</u></a></li>
+                      <li><a href="{% url 'cursos' %}" class="nav-link px-2 text-white"><u>CURSOS</u></a></li>
+                      <li><a href="{% url 'noticias' %}" class="nav-link px-2 text-white"><u>NOTICIAS</u></a></li>
+                      <li><a href="{% url 'proyectos' %}" class="nav-link px-2 text-white"><u>PROYECTOS</u></a></li>
+                  </ul>
+  
+                  <div class="text-end">
+                      <a href="{% url 'login_view' %}">
+                          <button type="button" class="btn btn-outline-light me-2">INGRESAR</button>
+                      </a>
+                  </div>
 
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

@@ -1,8 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from rest_framework.authtoken.models import Token
-from django.contrib.auth.models import User
-from django.contrib.auth import logout
+from django.contrib.auth.models import User, Group
+from django.contrib.auth import authenticate, login, logout
 
 def login_view(request):
     if request.method == 'POST':
@@ -14,7 +14,7 @@ def login_view(request):
             Token.objects.filter(user=user).delete()  # Elimina el token existente
             token = Token.objects.create(user=user)  # Crea un nuevo token
             print(f"Token for {user.username}: {token.key}")  # Imprimir el token en la consola
-            response = redirect('menu_admin')
+            response = redirect('audit_log')
             response.set_cookie('token', token.key)  # Almacena el token en una cookie
             return response
         else:
@@ -24,27 +24,15 @@ def login_view(request):
 
 
 def logout_view(request):
-    logout(request)  # Desautentica al usuario
-    response = redirect('login_view')
-    response.delete_cookie('token')  # Elimina la cookie con el token
-    return response
-
-def register_view(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        email = request.POST.get('email')
-        if username and password and email:
-            if User.objects.filter(username=username).exists():
-                return render(request, 'blog/register.html', {'error': 'El nombre de usuario ya existe'})
-            user = User.objects.create_user(username, email, password)
-            return redirect('login_view')
-        else:
-            return render(request, 'blog/register.html', {'error': 'Todos los campos son obligatorios'})
+    user = request.user
+    if user.is_authenticated:
+        print(f"Logging out user: {user.username}")
+        Token.objects.filter(user=user).delete()  # Elimina el token del usuario
+        logout(request)  # Desautentica al usuario
+        response = redirect('login_view')
+        response.delete_cookie('token')  # Elimina la cookie con el token
+        print("Token cookie deleted")
+        return response
     else:
-        return render(request, 'blog/register.html')
-
-
-
-
-
+        print("User is not authenticated")
+        return redirect('login_view')

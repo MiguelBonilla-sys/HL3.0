@@ -22,7 +22,6 @@ def noticias_admin(request):
     }
 
     return render(request, 'blog/AdminNoticias.html', context)
-
 @login_required_with_token
 def delete_noticia(request, idnoticia):
     noticia = get_object_or_404(Noticias, idnoticia=idnoticia)

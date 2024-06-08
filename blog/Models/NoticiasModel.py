@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User as AuthUser
+from django.contrib.auth.models import User
 
 class Noticias(models.Model):
     idnoticia = models.AutoField(db_column='idNoticia', primary_key=True)  # Field name made lowercase.
@@ -7,8 +7,7 @@ class Noticias(models.Model):
     fecha_noticia = models.DateTimeField(db_column='Fecha_noticia')  # Field name made lowercase.
     link_noticia = models.CharField(db_column='Link_noticia', max_length=250)  # Field name made lowercase.
     description_noticia = models.CharField(db_column='Description_noticia', max_length=450)  # Field name made lowercase.
-    creador = models.ForeignKey(AuthUser, models.DO_NOTHING)
-
+    creador = models.ForeignKey(User, on_delete=models.CASCADE)
     class Meta:
         managed = False
         db_table = 'noticias'
