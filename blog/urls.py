@@ -31,15 +31,19 @@ urlpatterns = [
     ])),
     path('logout/', logout_view, name='logout'),
     path('audit_log/', AdminMenuView.as_view(), name='audit_log'),
+
     path('audit_log/cursos_admin/', cursos_admin, name='cursos_admin'),
     path('delete_curso/<int:idcursos>/', delete_curso, name='delete_curso'),
     path('update_curso/<int:idcursos>/', update_curso, name='update_curso'),
+    
     path('audit_log/noticias_admin/', noticias_admin, name='noticias_admin'),
     path('delete_noticia/<int:idnoticia>/', delete_noticia, name='delete_noticia'),
     path('update_noticia/<int:idnoticia>/', update_noticia, name='update_noticia'),
+
     path('audit_log/integrantes_admin/', integrantes_admin, name='integrantes_admin'),
     path('delete_integrante/<int:idintegrantes>/', delete_integrante, name='delete_integrante'),
     path('update_integrante/<int:idintegrantes>/', update_integrante, name='update_integrante'),
+    
     path('audit_log/proyecto_admin/', proyecto_admin, name='proyecto_admin'),
     path('delete_proyecto/<int:idproyectos>/', delete_proyecto, name='delete_proyecto'),
     path('update_proyecto/<int:idproyectos>/', update_proyecto, name='update_proyecto'),
