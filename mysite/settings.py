@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-==qr4m(^mkkrke+)d0vqwnr_(vzrp^z(&)f*a5c7$_6tl5flap
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
@@ -34,15 +34,15 @@ STATIC_ROOT = BASE_DIR / 'static'
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
+    'django.contrib.admin', # Este es el panel de administración
+    'django.contrib.auth', # Esta es la app de autenticación
+    'django.contrib.contenttypes', # Esta es la app de contenido
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'blog',
+    'rest_framework', # Esto es para agregar REST Framework
+    'rest_framework.authtoken', # Es para agregar el token de autenticación
+    'blog', # Esta es la app que se creó
 ]
 
 
@@ -51,13 +51,15 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
 
+
+# Se configura el sistema de autenticación
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',

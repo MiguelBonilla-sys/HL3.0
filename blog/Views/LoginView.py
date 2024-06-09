@@ -5,6 +5,14 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 
 def login_view(request):
+    """
+    Esta vista maneja el proceso de inicio de sesión.
+    Si el método de la solicitud es POST, intenta autenticar al usuario.
+    Si el usuario es autenticado con éxito, se elimina cualquier token existente, se crea uno nuevo,
+    se imprime en la consola y se almacena en una cookie.
+    Si la autenticación falla, se muestra un mensaje de error.
+    Si el método de la solicitud no es POST, simplemente se muestra la página de inicio de sesión.
+    """
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -24,6 +32,12 @@ def login_view(request):
 
 
 def logout_view(request):
+    """
+    Esta vista maneja el proceso de cierre de sesión.
+    Si el usuario está autenticado, se elimina su token, se cierra su sesión,
+    se elimina la cookie con el token y se le redirige a la página de inicio de sesión.
+    Si el usuario no está autenticado, simplemente se le redirige a la página de inicio de sesión.
+    """
     user = request.user
     if user.is_authenticated:
         print(f"Logging out user: {user.username}")

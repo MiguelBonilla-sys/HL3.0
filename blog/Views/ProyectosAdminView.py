@@ -6,6 +6,11 @@ from blog.Views.decorators import login_required_with_token
 
 @login_required_with_token
 def proyecto_admin(request):
+    """
+    Esta vista maneja la creación de nuevos proyectos. Si el método de la solicitud es POST,
+    valida el formulario y guarda el nuevo proyecto en la base de datos. Si el método de la solicitud
+    no es POST, simplemente renderiza el formulario de proyectos.
+    """
     if request.method == 'POST':
         form = ProyectosForm(request.POST)
         if form.is_valid():
@@ -21,12 +26,21 @@ def proyecto_admin(request):
 
 @login_required_with_token
 def delete_proyecto(request, idproyectos):
+    """
+    Esta vista maneja la eliminación de proyectos. Obtiene el proyecto por su id y lo elimina.
+    Luego redirige al usuario a la página de administración de proyectos.
+    """
     proyecto = get_object_or_404(Proyectos, idproyectos=idproyectos)
     proyecto.delete()
     return redirect('proyecto_admin')
 
 @login_required_with_token
 def update_proyecto(request, idproyectos):
+    """
+    Esta vista maneja la actualización de proyectos. Obtiene el proyecto por su id y, si el método de la solicitud
+    es POST, actualiza el proyecto con los datos del formulario. Independientemente del método de la solicitud,
+    redirige al usuario a la página de administración de proyectos.
+    """
     proyecto = get_object_or_404(Proyectos, idproyectos=idproyectos)
     if request.method == 'POST':
         form = ProyectosForm(request.POST, instance=proyecto)
@@ -34,6 +48,5 @@ def update_proyecto(request, idproyectos):
             form.save()
             return redirect('proyecto_admin')
     else:
-        form = ProyectosForm(instance=proyecto)
-    
-    return redirect('proyecto_admin')
+        ProyectosForm(instance=proyecto)    
+        return redirect('proyecto_admin')
