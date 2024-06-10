@@ -99,14 +99,18 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hack3rlabs',
-        'USER': 'root',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Semillero',
+        'USER': 'postgres',
         'PASSWORD': 'sonic2013*0314',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'HOST': 'localhost',  # Puedes cambiar esto según tu configuración
+        'PORT': '5432',        # El puerto predeterminado de PostgreSQL es 5432
+        'OPTIONS': {
+            'options': '-c search_path=hack3rlabs'  # Aquí especificas el esquema
+        }
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

@@ -22,8 +22,15 @@ admin_group, created = Group.objects.get_or_create(name='Admin')
 
 # Obtener permisos
 content_type = ContentType.objects.get_for_model(User)
-add_user_permission = Permission.objects.get(codename='add_user', content_type=content_type)
-change_user_permission = Permission.objects.get(codename='change_user', content_type=content_type)
+try:
+    add_user_permission = Permission.objects.get(codename='add_user', content_type=content_type)
+except Permission.DoesNotExist:
+    add_user_permission = Permission.objects.create(codename='add_user', name='Can add user', content_type=content_type)
+
+try:
+    change_user_permission = Permission.objects.get(codename='change_user', content_type=content_type)
+except Permission.DoesNotExist:
+    change_user_permission = Permission.objects.create(codename='change_user', name='Can change user', content_type=content_type)
 
 # Asignar permisos al grupo de staff
 staff_group.permissions.add(add_user_permission)
