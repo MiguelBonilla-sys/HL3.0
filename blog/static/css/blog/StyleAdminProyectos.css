@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+.formularioPro {
+    display: flex;
+    margin: 20px auto 0;
+    width: 85%;
+    /* Aumenta el ancho */
+    padding: 20px;
+    /* Aumenta el padding */
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+header {
+    background-color: #ffffff;
+    color: #fff;
+    padding: 10px 0;
+}
+
+h3 {
+    display: flex;
+    margin: 20px auto 0;
+    width: 85%;
+    /* Aumenta el ancho */
+    padding: 20px;
+    /* Aumenta el padding */
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.form-selectPro {
+    display: flex;
+    margin: 20px auto 0;
+    width: 85%;
+    /* Aumenta el ancho */
+    padding: 20px;
+    /* Aumenta el padding */
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+form.row.g-3.needs-validationPro {
+    margin: 5px auto 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    /* Centra los elementos horizontalmente */
+    justify-content: center;
+    /* Centra los elementos verticalmente */
+}
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #d49a42;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.edit-btn, .save-btn, .btn-danger {
+    margin: 5px;
+}

@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+header {
+    background-color: #ffffff;
+    color: #fff;
+    padding: 10px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 50px; /* Añade un margen alrededor de la tabla */
+}
+
+thead {
+    background-color: #f8f8f8;
+}
+
+th{
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    background-color: #ffae00; /* Código de color hexadecimal para azul */
+    color: white;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 10px; /* Añade un padding en lugar de un margen a las celdas */
+    max-width: 90%; /* Limita el ancho de la celda */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+h3 {
+    display: flex;
+    margin: 20px auto 0;
+    width: 85%;
+    /* Aumenta el ancho */
+    padding: 20px;
+    /* Aumenta el padding */
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.short-text, .full-text {
+    max-width: 100%; /* El contenido puede ocupar todo el ancho de la celda */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.full-text {
+    white-space: normal;
+}

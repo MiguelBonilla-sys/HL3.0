@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #00234b;
+}
+
+header {
+    background-color: #00234b;
+    color: #fff;
+    padding: 10px 0;
+}
+.card{
+    margin: 20px;
+}
+.pag_num{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
