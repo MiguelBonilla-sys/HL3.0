@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework', # Esto es para agregar REST Framework
     'rest_framework.authtoken', # Es para agregar el token de autenticación
+
+    #Este "corsheaders" es para permitir que el frontend se comunique con el backend, es para permitir el acceso a la API
+    # desde un dominio diferente al del backend
+    'corsheaders', # Esta es la app que se instaló
     'blog', # Esta es la app que se creó
 ]
 
@@ -49,11 +53,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # Se agrega el middleware de corsheaders
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',  
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',   
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -154,3 +159,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Se configura el CORS
+CORS_ALLOWED_ORIGINS = [
+    # Aquí debes agregar el dominio de tu frontend, por ejemplo: 'http://localhost:3000' o 'http://129.168.161.1:3000'
+]
