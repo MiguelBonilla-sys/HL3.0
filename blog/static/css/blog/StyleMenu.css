@@ -3,239 +3,173 @@ body {
   font-family: Arial, sans-serif;
   background-color: #00234b;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 header {
   background-color: #00234b;
   color: #fff;
   padding: 10px 0;
 }
-
-#carrusel {
+h3 {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin: auto;
+  margin: 20px auto 0;
+  width: 60%; /* Aumenta el ancho */
+  padding: 20px; /* Aumenta el padding */
+  border: 1px solid #00234b;
+  background-color: #17467c;
+  border-radius: 15px;
+  color:#fff;
 }
 
-#carrusel .left-arrow {
-  position: absolute;
-  left: 10px;
-  z-index: 1;
-  top: 50%;
-  margin-top: -9px;
+#Nombre_Integrante {
+  text-align: center;
+}
+/*                  CARRUSEL   1                  */
+/* Estilos para centrar el carrusel y ajustar su tamaño */
+#carouselExampleCaptions {
+  width: 60%; /* Tamaño del carrusel */
+  margin: auto; /* Centrado horizontal */
+  background-color: #17467c;
+  border-radius: 20px; /* Hace que las esquinas del carrusel sean redondeadas */
+  color: #fff; /* Color del texto */
 }
 
-#carrusel .right-arrow {
-  position: absolute;
-  right: 10px;
-  z-index: 1;
-  top: 50%;
-  margin-top: -9px;
+/* Estilos para los botones de control del carrusel */
+.carousel-control-prev,
+.carousel-control-next {
+  font-size: 12px; /* Tamaño del texto de los botones */
+  width: 45px; /* Ancho de los botones */
+  height: 225px; /* Altura de los botones */
+  opacity: 0.01; /* Opacidad inicial */
+  top: 20%;
 }
 
-.carrusel {
+/* Estilos para los botones de control del carrusel al pasar el mouse */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 0.1; /* Opacidad al pasar el mouse */
+}
+
+/* imagen de carrusel */
+.rounded-img {
+  border-radius: 20px;
+}
+
+
+/*                  CARRUSEL   2                  */
+/* Estilos para centrar el carrusel y ajustar su tamaño */
+#Intengrantes_CaosuelBack {
+  padding: 20px;
   display: flex;
-  width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-}
-
-.carrusel > div {
-  flex: 0 0 auto;
-  height: 203px;
-  margin-right: 5px;
-  width: 195px;
-  text-align: center;
-  place-items: center;
-  scroll-snap-align: start;
-}
-
-.carrusel img {
-  cursor: pointer;
-}
-
-.product {
-  border: #cccccc 1px solid;
-}
-
-.CarosuelD {
-  padding: 10px 0;
-  margin: auto;
-}
-
-.slide {
+  justify-content: center;
   position: relative;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
-  margin-top: 26px;
 }
 
-.slide-inner {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: calc(300px + 3em);
+/* Estilos para centrar el carrusel y ajustar su tamaño */
+#Intengrantes_Intengrantes_CaosuelBack{
+  width: 100%; /* Ancho completo */
 }
 
-.slide-content {
-  text-align: right;
-  margin: auto;
-  color: #fff;
+/* Estilos para centrar el carrusel y ajustar su tamaño */
+#Intengrantes_col-3 {
+  max-width: 100%; /* Ancho máximo del 100% */
+  height: auto; /* Altura automática para mantener la proporción */
+  color: #fff; /* Color del texto */
 }
 
-#Img1 {
-  float: right;
-  margin: auto;
+/* Estilos específicos para el carrusel */
+#Intengrantes_carousel {
+  overflow: hidden; /* Ocultar el contenido que se desborda */
+  border-radius: 10px; /* Borde redondeado para el carrusel */
 }
 
-.slide-open:checked + .slide-item {
-  position: static;
-  opacity: 100;
+
+#Contenedor_Carousel-Integrantes {
+  position: relative; /* Esto permite que los hijos absolutamente posicionados se posicionen en relación a este contenedor */
 }
 
-.slide-item {
+#integrantes_carousel-control-prev,
+#integrantes_carousel-control-next {
   position: absolute;
-  opacity: 0;
-  -webkit-transition: opacity 0.6s ease-out;
-  transition: opacity 0.6s ease-out;
+  top: 50%; /* Centra el botón verticalmente */
+  transform: translateY(-50%); /* Asegura que el centro del botón esté alineado con el centro vertical del contenedor */
+  width: 50px; /* Ancho del botón */
+  height: 95px; /* Altura del botón */
 }
 
-.slide-item img {
-  display: block;
-  height: auto;
-  max-width: 100%;
+
+#integrantes_carousel-control-prev {
+  left: 0; /* Posiciona el botón en la esquina izquierda */
+  
 }
 
-.slide-control {
-  background: rgba(0, 0, 0, 0.28);
-  border-radius: 50%;
-  color: #fff;
-  cursor: pointer;
-  display: block; /* Cambiado de 'none' a 'block' */
-  font-size: 40px;
-  height: 40px;
-  line-height: 35px;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  text-align: center;
-  width: 40px;
-  z-index: 10;
+#integrantes_carousel-control-next {
+  right: 0; /* Posiciona el botón en la esquina derecha */
 }
 
-.slide-control.prev {
-  left: 2%;
+/* Estilos para los iconos de los botones del carrusel */
+#integrantes_carousel-control-prev-icon,
+#integrantes_carousel-control-next-icon {
+  background-color: rgba(156, 156, 156, 0.5); /* Color del icono dentro del botón */
+  height: 280px;
 }
 
-.slide-control.next {
-  right: 2%;
-}
 
-.slide-control:hover {
-  background: rgba(0, 0, 0, 0.8);
-  color: #aaaaaa;
-}
 
-#slide-1:checked ~ .control-1,
-#slide-2:checked ~ .control-2,
-#slide-3:checked ~ .control-3 {
-  display: block;
-}
-
-.slide-indicador {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  bottom: 2%;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 10;
-}
-
-.slide-indicador li {
-  display: inline-block;
-  margin: 0 5px;
-}
-
-.slide-circulo {
-  color: #828282;
-  cursor: pointer;
-  display: block;
-  font-size: 35px;
-}
-
-.slide-circulo:hover {
-  color: #aaaaaa;
-}
-
-#slide-1:checked
-  ~ .control-1
-  ~ .slide-indicador
-  li:nth-child(1)
-  .slide-circulo,
-#slide-2:checked
-  ~ .control-2
-  ~ .slide-indicador
-  li:nth-child(2)
-  .slide-circulo,
-#slide-3:checked
-  ~ .control-3
-  ~ .slide-indicador
-  li:nth-child(3)
-  .slide-circulo {
-  color: #428bca;
-}
-
-#titulo {
-  width: 100%;
-  position: absolute;
-  padding: 0px;
-  margin: 0px auto;
-  text-align: center;
-  font-size: 27px;
-  color: rgba(255, 255, 255, 1);
-  font-family: "Open Sans", sans-serif;
-  z-index: 9999;
-  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33),
-    -1px 0px 2px rgba(255, 255, 255, 0);
-}
-
-/* Media queries para hacer el código responsive */
-
-@media (max-width: 768px) {
-  /* Estilos para pantallas de hasta 768px de ancho */
-  .carrusel > div {
-    height: 150px;
-    width: 145px;
+/* Estilos para pantallas pequeñas (menos de 600px) */
+@media (max-width: 600px) {
+  #integrantes_carousel-control-prev,
+  #integrantes_carousel-control-next {
+    width: 30px; /* Ancho del botón */
+    height: 60px; /* Altura del botón */
   }
 }
 
-@media (max-width: 576px) {
-  /* Estilos para pantallas de hasta 576px de ancho */
-  .carrusel > div {
-    height: 100px;
-    width: 95px;
+/* Estilos para pantallas medianas (entre 600px y 1200px) */
+@media (min-width: 600px) and (max-width: 1200px) {
+  #integrantes_carousel-control-prev,
+  #integrantes_carousel-control-next {
+    width: 40px; /* Ancho del botón */
+    height: 80px; /* Altura del botón */
   }
 }
-.carousel-item {
-  text-align: center;
+
+/* Estilos para pantallas grandes (más de 1200px) */
+@media (min-width: 1200px) {
+  #integrantes_carousel-control-prev,
+  #integrantes_carousel-control-next {
+    width: 50px; /* Ancho del botón */
+    height: 95px; /* Altura del botón */
+  }
+
+  #integrantes_carousel-control-prev-icon,
+  #integrantes_carousel-control-next-icon {
+    height: 280px;
+  }
 }
-.bottom-text {
-  text-align: center;
-}
-.CaosuelBack {
+
+#botton_Correo{
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 10px auto; /* Ajusta este valor según el tamaño del margen que desees */
-  display: flex; /* Necesario para que funcione el centrado automático */
-  color: white;
+  background-color:#b95d20;
+  width: 68%;
+  height: 5%; /* Ajusta esto según tus necesidades */
+  margin: 0 auto; /* Centra el botón en la página */
+  border-radius: 10px;
 }
+
+#botton_GitHub{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#231e33;
+  width: 68%;
+  height: 5%; /* Ajusta esto según tus necesidades */
+  margin: 0 auto; /* Centra el botón en la página */
+  border-radius: 10px;
+}
+
