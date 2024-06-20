@@ -4,6 +4,12 @@ body {
     background-color: #ffffff;
 }
 
+header {
+    background-color: #ffffff;
+    color: #fff;
+    padding: 10px 0;
+}
+
 .formularioNoti {
     display: flex;
     margin: 20px auto 0;
@@ -12,12 +18,6 @@ body {
     border: 1px solid #ccc;
     background-color: #f9f9f9;
     border-radius: 5px;
-}
-
-header {
-    background-color: #ffffff;
-    color: #fff;
-    padding: 10px 0;
 }
 
 h3 {

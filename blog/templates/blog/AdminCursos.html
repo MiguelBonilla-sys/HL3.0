@@ -45,10 +45,7 @@
 
 
 <body>
-    <div class="b-example-divider"></div>
     <h3>Cursos</h3>
-
-
     <div class="formulario">
         <form id="CursosForm" method="POST" action="{% url 'cursos_admin' %}" class="form-control row g-3 needs-validationPro" enctype="multipart/form-data">
             {% csrf_token %}
@@ -82,7 +79,6 @@
             </div>
         </form>
     </div>
-
     <table>
         <tr>
             <th>ID Curso</th>

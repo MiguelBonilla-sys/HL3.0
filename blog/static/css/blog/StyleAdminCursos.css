@@ -57,7 +57,7 @@ form.row.g-3.needs-validation {
 }
 
 table {
-    margin: auto;
+    margin: 15px auto 0;
     border-collapse: collapse;
     width: 80%;
 }
