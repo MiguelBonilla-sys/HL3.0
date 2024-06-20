@@ -1,175 +1,277 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #00234b;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #00234b;
 }
+
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
+
 header {
-  background-color: #00234b;
-  color: #fff;
-  padding: 10px 0;
+    background-color: #00234b;
+    color: #fff;
+    padding: 10px 0;
 }
+
 h3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto 0;
-  width: 60%; /* Aumenta el ancho */
-  padding: 20px; /* Aumenta el padding */
-  border: 1px solid #00234b;
-  background-color: #17467c;
-  border-radius: 15px;
-  color:#fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 0;
+    width: 60%;
+    /* Aumenta el ancho */
+    padding: 20px;
+    /* Aumenta el padding */
+    border: 1px solid #00234b;
+    background-color: #17467c;
+    border-radius: 15px;
+    color: #fff;
 }
 
 #Nombre_Integrante {
-  text-align: center;
+    text-align: center;
 }
+
+
 /*                  CARRUSEL   1                  */
+
+
 /* Estilos para centrar el carrusel y ajustar su tamaño */
+
 #carouselExampleCaptions {
-  width: 60%; /* Tamaño del carrusel */
-  margin: auto; /* Centrado horizontal */
-  background-color: #17467c;
-  border-radius: 20px; /* Hace que las esquinas del carrusel sean redondeadas */
-  color: #fff; /* Color del texto */
+    width: 60%;
+    /* Tamaño del carrusel */
+    margin: auto;
+    /* Centrado horizontal */
+    background-color: #17467c;
+    border-radius: 20px;
+    /* Hace que las esquinas del carrusel sean redondeadas */
+    color: #fff;
+    /* Color del texto */
 }
+
 
 /* Estilos para los botones de control del carrusel */
+
 .carousel-control-prev,
 .carousel-control-next {
-  font-size: 12px; /* Tamaño del texto de los botones */
-  width: 45px; /* Ancho de los botones */
-  height: 225px; /* Altura de los botones */
-  opacity: 0.01; /* Opacidad inicial */
-  top: 20%;
+    font-size: 12px;
+    /* Tamaño del texto de los botones */
+    width: 45px;
+    /* Ancho de los botones */
+    height: 225px;
+    /* Altura de los botones */
+    opacity: 0.01;
+    /* Opacidad inicial */
+    top: 20%;
 }
+
 
 /* Estilos para los botones de control del carrusel al pasar el mouse */
+
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
-  opacity: 0.1; /* Opacidad al pasar el mouse */
+    opacity: 0.1;
+    /* Opacidad al pasar el mouse */
 }
 
+
 /* imagen de carrusel */
+
 .rounded-img {
-  border-radius: 20px;
+    border-radius: 20px;
 }
 
 
 /*                  CARRUSEL   2                  */
+
+
 /* Estilos para centrar el carrusel y ajustar su tamaño */
+
 #Intengrantes_CaosuelBack {
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  position: relative;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    position: relative;
 }
 
-/* Estilos para centrar el carrusel y ajustar su tamaño */
-#Intengrantes_Intengrantes_CaosuelBack{
-  width: 100%; /* Ancho completo */
-}
 
 /* Estilos para centrar el carrusel y ajustar su tamaño */
+
+#Intengrantes_Intengrantes_CaosuelBack {
+    width: 58vw;
+    /* Ancho completo */
+}
+
+
+/* Estilos para centrar el carrusel y ajustar su tamaño */
+
 #Intengrantes_col-3 {
-  max-width: 100%; /* Ancho máximo del 100% */
-  height: auto; /* Altura automática para mantener la proporción */
-  color: #fff; /* Color del texto */
+    max-width: 100%;
+    /* Ancho máximo del 100% */
+    height: auto;
+    /* Altura automática para mantener la proporción */
+    color: #fff;
+    /* Color del texto */
 }
+
 
 /* Estilos específicos para el carrusel */
+
 #Intengrantes_carousel {
-  overflow: hidden; /* Ocultar el contenido que se desborda */
-  border-radius: 10px; /* Borde redondeado para el carrusel */
+    overflow: hidden;
+    /* Ocultar el contenido que se desborda */
+    border-radius: 10px;
+    /* Borde redondeado para el carrusel */
 }
 
-
 #Contenedor_Carousel-Integrantes {
-  position: relative; /* Esto permite que los hijos absolutamente posicionados se posicionen en relación a este contenedor */
+    position: relative;
+    /* Esto permite que los hijos absolutamente posicionados se posicionen en relación a este contenedor */
+    justify-content: center;
+    position: relative;
 }
 
 #integrantes_carousel-control-prev,
 #integrantes_carousel-control-next {
-  position: absolute;
-  top: 50%; /* Centra el botón verticalmente */
-  transform: translateY(-50%); /* Asegura que el centro del botón esté alineado con el centro vertical del contenedor */
-  width: 50px; /* Ancho del botón */
-  height: 95px; /* Altura del botón */
+    position: absolute;
+    top: 50%;
+    /* Centra el botón verticalmente */
+    transform: translateY(-50%);
+    /* Asegura que el centro del botón esté alineado con el centro vertical del contenedor */
+    width: 50px;
+    /* Ancho del botón */
+    height: 95px;
+    /* Altura del botón */
 }
 
-
 #integrantes_carousel-control-prev {
-  left: 0; /* Posiciona el botón en la esquina izquierda */
-  
+    left: 0;
+    /* Posiciona el botón en la esquina izquierda */
 }
 
 #integrantes_carousel-control-next {
-  right: 0; /* Posiciona el botón en la esquina derecha */
+    right: 0;
+    /* Posiciona el botón en la esquina derecha */
 }
+
 
 /* Estilos para los iconos de los botones del carrusel */
+
 #integrantes_carousel-control-prev-icon,
 #integrantes_carousel-control-next-icon {
-  background-color: rgba(156, 156, 156, 0.5); /* Color del icono dentro del botón */
-  height: 280px;
+    background-color: rgba(156, 156, 156, 0.5);
+    /* Color del icono dentro del botón */
+    height: 280px;
 }
-
 
 
 /* Estilos para pantallas pequeñas (menos de 600px) */
+
 @media (max-width: 600px) {
-  #integrantes_carousel-control-prev,
-  #integrantes_carousel-control-next {
-    width: 30px; /* Ancho del botón */
-    height: 60px; /* Altura del botón */
-  }
+    #integrantes_carousel-control-prev,
+    #integrantes_carousel-control-next {
+        width: 30px;
+        /* Ancho del botón */
+        height: 60px;
+        /* Altura del botón */
+    }
 }
+
 
 /* Estilos para pantallas medianas (entre 600px y 1200px) */
+
 @media (min-width: 600px) and (max-width: 1200px) {
-  #integrantes_carousel-control-prev,
-  #integrantes_carousel-control-next {
-    width: 40px; /* Ancho del botón */
-    height: 80px; /* Altura del botón */
-  }
+    #integrantes_carousel-control-prev,
+    #integrantes_carousel-control-next {
+        width: 40px;
+        /* Ancho del botón */
+        height: 80px;
+        /* Altura del botón */
+    }
 }
+
 
 /* Estilos para pantallas grandes (más de 1200px) */
+
 @media (min-width: 1200px) {
-  #integrantes_carousel-control-prev,
-  #integrantes_carousel-control-next {
-    width: 50px; /* Ancho del botón */
-    height: 95px; /* Altura del botón */
-  }
-
-  #integrantes_carousel-control-prev-icon,
-  #integrantes_carousel-control-next-icon {
-    height: 280px;
-  }
+    #integrantes_carousel-control-prev,
+    #integrantes_carousel-control-next {
+        width: 50px;
+        /* Ancho del botón */
+        height: 95px;
+        /* Altura del botón */
+    }
+    #integrantes_carousel-control-prev-icon,
+    #integrantes_carousel-control-next-icon {
+        height: 280px;
+    }
 }
 
-#botton_Correo{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color:#b95d20;
-  width: 68%;
-  height: 5%; /* Ajusta esto según tus necesidades */
-  margin: 0 auto; /* Centra el botón en la página */
-  border-radius: 10px;
+#botton_Correo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #b95d20;
+    width: 68%;
+    height: 5%;
+    /* Ajusta esto según tus necesidades */
+    margin: 0 auto;
+    /* Centra el botón en la página */
+    border-radius: 10px;
 }
 
-#botton_GitHub{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color:#231e33;
-  width: 68%;
-  height: 5%; /* Ajusta esto según tus necesidades */
-  margin: 0 auto; /* Centra el botón en la página */
-  border-radius: 10px;
+#botton_GitHub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #231e33;
+    width: 68%;
+    height: 5%;
+    /* Ajusta esto según tus necesidades */
+    margin: 0 auto;
+    /* Centra el botón en la página */
+    border-radius: 10px;
 }
 
+
+/* Estilos CSS para dispositivos con pantalla hasta 600px (teléfonos móviles) */
+
+@media only screen and (max-width: 600px) {
+    .carousel-item {
+        flex-direction: column;
+    }
+    .carousel-item .row {
+        flex-direction: column;
+    }
+    .carousel-item .col-md-6 {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+    .carousel-item .text-left {
+        margin-left: 0;
+        text-align: center;
+    }
+    #Contenedor_Carousel-Integrantes .carousel-item .col-3 {
+        max-width: 100%;
+        flex-basis: 100%;
+        text-align: center;
+    }
+    #Contenedor_Carousel-Integrantes .carousel-item img {
+        margin: 0 auto;
+    }
+}
+
+
+/* Estilos CSS para dispositivos con pantalla hasta 600px (teléfonos móviles) */
+
+@media only screen and (max-width: 600px) {
+    #botton_Correo,
+    #botton_GitHub {
+        width: 90%;
+        /* Aumenta el ancho para dispositivos móviles */
+        height: 8%;
+        /* Aumenta la altura para dispositivos móviles */
+    }
+}

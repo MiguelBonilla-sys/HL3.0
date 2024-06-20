@@ -24,7 +24,9 @@ h3 {
     display: flex;
     margin: 20px auto 0;
     width: 85%;
+    /* Aumenta el ancho */
     padding: 20px;
+    /* Aumenta el padding */
     border: 1px solid #ccc;
     background-color: #f9f9f9;
     border-radius: 5px;
@@ -54,7 +56,8 @@ table {
     width: 80%;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
@@ -69,6 +72,8 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.edit-btn, .save-btn, .btn-danger {
+.edit-btn,
+.save-btn,
+.btn-danger {
     margin: 5px;
 }

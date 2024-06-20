@@ -47,7 +47,7 @@ def update_noticia(request, idnoticia):
     Si el método de la solicitud es POST, se valida el formulario de noticias 
     y se actualiza la noticia. Si el método de la solicitud no es POST, se inicializa 
     el formulario de noticias con la noticia existente. En ambos casos, se renderiza 
-    la plantilla 'blog/UpdateNoticia.html' con el formulario y la noticia.
+    la plantilla 'blog/AdminNoticias.html' con el formulario y la noticia.
     """
     noticia = get_object_or_404(Noticias, idnoticia=idnoticia)
     if request.method == 'POST':
@@ -55,6 +55,8 @@ def update_noticia(request, idnoticia):
         if form.is_valid():
             form.save()
             return redirect('noticias_admin')
+        else:
+            print(form.errors)
     else:
         form = NoticiasForm(instance=noticia)
     
@@ -62,4 +64,4 @@ def update_noticia(request, idnoticia):
         'form': form,
         'noticia': noticia
     }
-    return render(request, 'blog/UpdateNoticia.html', context)
+    return render(request, 'blog/AdminNoticias.html', context)

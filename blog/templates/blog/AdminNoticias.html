@@ -75,7 +75,7 @@
                 </div>
             </div>
         </form>
-        
+
 
         <table>
             <thead>
@@ -93,7 +93,7 @@
                 <tr id="row-{{ noticia.idnoticia }}">
                     <td>{{ noticia.idnoticia }}</td>
                     <td><input type="text" value="{{ noticia.nombre_noticia }}" name="nombre_noticia" class="form-control editable" readonly></td>
-                    <td><input type="date" value="{{ noticia.fecha_noticia|date:"Y-m-d" }}" name="fecha_noticia" class="form-control editable" readonly></td>
+                    <td><input type="date" value="{{ noticia.fecha_noticia|date:'Y-m-d' }}" name="fecha_noticia" class="form-control editable" readonly></td>
                     <td><input type="text" value="{{ noticia.link_noticia }}" name="link_noticia" class="form-control editable" readonly></td>
                     <td><input type="text" value="{{ noticia.description_noticia }}" name="description_noticia" class="form-control editable" readonly></td>
                     <td>
@@ -121,9 +121,14 @@
                     var id = $(this).data('id');
                     var row = $('#row-' + id);
 
+                    var fecha_noticia = row.find('[name="fecha_noticia"]').val();
+                    if (!fecha_noticia) {
+                        fecha_noticia = '0000-00-00'; // Valor por defecto si el input está vacío
+                    }
+
                     var data = {
                         'nombre_noticia': row.find('[name="nombre_noticia"]').val(),
-                        'fecha_noticia': row.find('[name="fecha_noticia"]').val(),
+                        'fecha_noticia': fecha_noticia,
                         'link_noticia': row.find('[name="link_noticia"]').val(),
                         'description_noticia': row.find('[name="description_noticia"]').val(),
                         'csrfmiddlewaretoken': '{{ csrf_token }}'

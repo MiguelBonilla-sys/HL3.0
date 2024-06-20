@@ -1,3 +1,5 @@
+
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -87,4 +89,16 @@ th, td {
 th {
     background-color: #0000FF; /* Código de color hexadecimal para azul */
     color: white;
+}
+
+#paginador_integrantes{
+    margin: 5px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-image {
+    width: 200px;
+    height: auto;
 }

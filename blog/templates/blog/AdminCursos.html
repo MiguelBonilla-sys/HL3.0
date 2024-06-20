@@ -27,7 +27,7 @@
                     <li><a href="{% url 'cursos_admin' %}" class="nav-link px-2 text-white"><u>CURSOS</u></a></li>
                     <li><a href="{% url 'noticias_admin' %}" class="nav-link px-2 text-white"><u>NOTICIAS</u></a></li>
                     <li><a href="{% url 'proyecto_admin' %}" class="nav-link px-2 text-white"><u>PROYECTOS</u></a></li>
-                </ul>   
+                </ul>
 
                 <div class="text-end">
                     <a href="{% url 'logout' %}">
@@ -97,10 +97,10 @@
         <tr id="row-{{ curso.idcursos }}">
             <td>{{ curso.idcursos }}</td>
             <td><input type="text" name="nombre_curso" value="{{ curso.nombre_curso }}" class="form-control editable" readonly></td>
-            <td><input type="date" name="fechainicial_curso" value="{{ curso.fechainicial_curso|date:"Y-m-d" }}" class="form-control editable" readonly></td>
-            <td><input type="date" name="fechafina_cursol" value="{{ curso.fechafina_cursol|date:"Y-m-d" }}" class="form-control editable" readonly></td>
+            <td><input type="date" name="fechainicial_curso" value="{{ curso.fechainicial_curso|date:'Y-m-d' }}" class="form-control editable" readonly></td>
+            <td><input type="date" name="fechafinal_curso" value="{{ curso.fechafinal_curso|date:'Y-m-d' }}" class="form-control editable" readonly></td>
             <td><input type="text" name="link_curso" value="{{ curso.link_curso }}" class="form-control editable" readonly></td>
-            <td><input type="text" name="descripcion_cursol" value="{{ curso.descripcion_cursol }}" class="form-control editable" readonly></td>
+            <td><input type="text" name="descripcion_curso" value="{{ curso.descripcion_curso }}" class="form-control editable" readonly></td>
             <td>
                 <a href="{% url 'delete_curso' curso.idcursos %}" class="btn btn-danger">Eliminar</a>
                 <button class="btn btn-primary edit-btn" data-id="{{ curso.idcursos }}">Editar</button>
@@ -127,7 +127,9 @@
         }
 
         $.ajaxSetup({
-            headers: { "X-CSRFToken": getCookie("csrftoken") }
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken")
+            }
         });
         $(document).ready(function() {
             // Función para obtener el valor de una cookie
@@ -138,19 +140,19 @@
                 row.find('.edit-btn').hide();
                 row.find('.save-btn').show();
             });
-    
+
             $(document).on('click', '.save-btn', function() {
                 var idcursos = $(this).data('id');
                 var row = $('#row-' + idcursos);
-    
+
                 var data = {
                     nombre_curso: row.find('input[name="nombre_curso"]').val(),
                     fechainicial_curso: row.find('input[name="fechainicial_curso"]').val(),
-                    fechafina_cursol: row.find('input[name="fechafina_cursol"]').val(),
+                    fechafinal_curso: row.find('input[name="fechafinal_curso"]').val(),
                     link_curso: row.find('input[name="link_curso"]').val(),
-                    descripcion_cursol: row.find('input[name="descripcion_cursol"]').val()
+                    descripcion_curso: row.find('input[name="descripcion_curso"]').val()
                 };
-    
+
                 $.ajax({
                     url: "{% url 'update_curso' idcursos=0 %}".slice(0, -2) + idcursos + '/',
                     type: 'POST',
@@ -175,4 +177,3 @@
 </body>
 
 </html>
-

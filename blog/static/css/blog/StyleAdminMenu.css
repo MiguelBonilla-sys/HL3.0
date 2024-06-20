@@ -13,18 +13,20 @@ header {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 50px; /* Añade un margen alrededor de la tabla */
+    margin: 50px;
+    /* Añade un margen alrededor de la tabla */
 }
 
 thead {
     background-color: #f8f8f8;
 }
 
-th{
+th {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
-    background-color: #ffae00; /* Código de color hexadecimal para azul */
+    background-color: #ffae00;
+    /* Código de color hexadecimal para azul */
     color: white;
 }
 
@@ -32,8 +34,10 @@ td {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding: 10px; /* Añade un padding en lugar de un margen a las celdas */
-    max-width: 90%; /* Limita el ancho de la celda */
+    padding: 10px;
+    /* Añade un padding en lugar de un margen a las celdas */
+    max-width: 90%;
+    /* Limita el ancho de la celda */
 }
 
 tr:nth-child(even) {
@@ -52,8 +56,10 @@ h3 {
     border-radius: 5px;
 }
 
-.short-text, .full-text {
-    max-width: 100%; /* El contenido puede ocupar todo el ancho de la celda */
+.short-text,
+.full-text {
+    max-width: 100%;
+    /* El contenido puede ocupar todo el ancho de la celda */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -61,4 +67,17 @@ h3 {
 
 .full-text {
     white-space: normal;
+}
+
+#paginador_AuditLog .pagination .page-item {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.affected-record-id {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

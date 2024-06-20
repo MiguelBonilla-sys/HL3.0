@@ -9,6 +9,9 @@ class AuditLog(models.Model):
     affected_record_id = models.IntegerField(blank=True, null=True)
     modified_data = models.JSONField(blank=True, null=True)
 
+    def __str__(self):
+        return self.username  # o cualquier campo que represente el nombre del usuario
+    
     class Meta:
         managed = False
         db_table = 'audit_log'

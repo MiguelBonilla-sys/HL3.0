@@ -62,13 +62,22 @@ table {
     width: 80%;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
 
 th {
-    background-color: #ff2600; /* Código de color hexadecimal para azul */
+    background-color: #ff2600;
+    /* Código de color hexadecimal para azul */
     color: white;
+}
+
+#paginador_cursos {
+    margin: 5px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
