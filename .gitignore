@@ -108,6 +108,7 @@ ENV/
 env.bak/ 
 venv.bak/ 
 myvenv/
+migrations/
 
 # mypy 
 .mypy_cache/ 
