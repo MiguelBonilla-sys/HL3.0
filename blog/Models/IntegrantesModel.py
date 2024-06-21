@@ -9,6 +9,7 @@ class Integrantes(models.Model):
     link_git = models.CharField(max_length=200)
     imagen = models.TextField()
     creador = models.ForeignKey(User, on_delete=models.CASCADE)
+    estado = models.BooleanField()  # Asumiendo que por defecto, un integrante está activo
     class Meta:
         managed = False
         db_table = 'integrantes'

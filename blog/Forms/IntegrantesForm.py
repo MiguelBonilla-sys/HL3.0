@@ -9,7 +9,7 @@ class IntegrantesForm(ModelForm):
 
     class Meta:
         model = Integrantes
-        fields = ['nombre_integrante', 'semestre', 'correo', 'link_git', 'imagen']
+        fields = ['nombre_integrante', 'semestre', 'correo', 'link_git', 'imagen', 'estado']
 
     def clean_imagen(self):
         imagen = self.cleaned_data.get('imagen')

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from blog.Models.IntegrantesModel import Integrantes
+from blog.Models.ProyectosIntegrantesModel import ProyectosIntegrantesProyecto
 from blog.Forms.IntegrantesForm import IntegrantesForm
 from django.shortcuts import get_object_or_404
 import base64
@@ -24,6 +25,14 @@ def integrantes_admin(request):
                 imagen_data = imagen.read()
                 imagen_base64 = base64.b64encode(imagen_data).decode()
                 integrante.imagen = imagen_base64
+            
+            # Aquí conviertes el valor del formulario a booleano
+            estado_formulario = request.POST.get('estado')
+            if estado_formulario == '1':
+                integrante.estado = True
+            elif estado_formulario == '0':
+                integrante.estado = False
+            
             integrante.creador = request.user  # Asignar el usuario actual como creador
             integrante.save()
             return redirect('integrantes_admin')
@@ -31,16 +40,15 @@ def integrantes_admin(request):
             print("ERROR: " + str(form.errors))
     else:
         form = IntegrantesForm()
-
-    integrantes = Integrantes.objects.order_by('idintegrantes')  # Ordenar los integrantes por su ID
-
-    # Crear un objeto Paginator, pasando la lista de integrantes y el número de integrantes por página
-    paginator = Paginator(integrantes, 4)
-
-    # Obtener el número de página de la solicitud GET, que entre 1 y el número total de páginas
-    page_number = request.GET.get('page')
     
-    # Obtener los integrantes de la página actual
+    if request.is_ajax():
+        term = request.GET.get('term', '')
+        integrantes_query = Integrantes.objects.filter(nombre_integrante__icontains=term).order_by('idintegrantes')[:10]
+        return JsonResponse([{'id': integrante.idintegrantes, 'text': integrante.nombre_integrante} for integrante in integrantes_query], safe=False)
+
+    integrantes = Integrantes.objects.order_by('idintegrantes')
+    paginator = Paginator(integrantes, 4)
+    page_number = request.GET.get('page')
     page_integrantes = paginator.get_page(page_number)
 
     context = {
@@ -49,14 +57,13 @@ def integrantes_admin(request):
     }
     return render(request, 'blog/AdminIntegrantes.html', context)
 
+
+
 @login_required_with_token
 def delete_integrante(request, idintegrantes):
-    """
-    Vista para eliminar un integrante. Se intenta obtener el integrante con el 
-    id proporcionado y luego se elimina. Finalmente, se redirige al usuario a la 
-    vista de administración de integrantes.
-    """
     integrante = get_object_or_404(Integrantes, idintegrantes=idintegrantes)
+    # Asegúrate de que el nombre del campo sea correcto
+    ProyectosIntegrantesProyecto.objects.filter(integrante=idintegrantes).delete()
     integrante.delete()
     return redirect('integrantes_admin')
 
@@ -79,6 +86,14 @@ def update_integrante(request, idintegrantes):
                 integrante.imagen = imagen_base64
             else:
                 integrante.imagen = Integrantes.objects.get(idintegrantes=idintegrantes).imagen
+            
+            # Aquí conviertes el valor del formulario a booleano
+            estado_formulario = request.POST.get('estado')
+            if estado_formulario == '1':
+                integrante.estado = True
+            elif estado_formulario == '0':
+                integrante.estado = False
+
             integrante.save()
             return JsonResponse({'status': 'success'})
         else:

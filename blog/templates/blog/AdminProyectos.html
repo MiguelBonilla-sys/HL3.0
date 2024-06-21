@@ -55,10 +55,16 @@
                     <label for="nombre_proyecto" class="form-label">Nombre del proyecto</label>
                     <input type="text" name="nombre_proyecto" class="form-control" id="nombre_proyecto" required>
                 </div>
+                <!-- Modificación aquí para integrantes -->
                 <div class="col-md-3">
-                    <label for="intengrantes_proyecto" class="form-label">Integrantes</label>
-                    <input type="text" name="intengrantes_proyecto" class="form-control" id="intengrantes_proyecto" required>
-                </div>
+                    <label for="integrantes_proyecto" class="form-label">Integrantes</label>
+                    <select multiple name="integrantes_proyecto" class="form-control select2" id="integrantes_proyecto" required>
+                        {% for integrante in integrantes %}
+                        <option value="{{ integrante.idintegrantes }}">{{ integrante.nombre_integrante }}</option>
+                        {% endfor %}
+                    </select>
+                </div>  
+                <!-- Fin de la modificación -->
                 <div class="col-md-3">
                     <label for="fecha_proyecto" class="form-label">Fecha</label>
                     <input type="date" name="fecha_proyecto" class="form-control" id="fecha_proyecto" required>
@@ -112,6 +118,15 @@
         </tbody>
     </table>
 
+    <!-- Incluir CSS de Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
+    <!-- Incluir jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- Incluir JS de Select2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         document.querySelectorAll('.edit-btn').forEach(button => {
@@ -122,6 +137,24 @@
                 });
                 row.querySelector('.save-btn').style.display = 'inline-block';
                 this.style.display = 'none';
+            });
+        });
+
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: "Selecciona integrantes",
+                allowClear: true,
+                ajax: {
+                    url: '/audit_log/integrantes_admin/',  // Asegúrate de que esta ruta coincida exactamente
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
             });
         });
     </script>

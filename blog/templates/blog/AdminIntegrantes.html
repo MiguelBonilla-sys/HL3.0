@@ -71,6 +71,14 @@
                         <label for="imagen" class="form-label">Imagen del Integrante</label>
                         <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
                     </div>
+                    <div class="col-md-4">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select class="form-select" id="estado" name="estado" required>
+                            <option value="" disabled selected>Seleccione un estado</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-success" name="action" value="add">Crear</button>
                     </div>
@@ -88,6 +96,7 @@
                 <th>Semestre</th>
                 <th>Correo</th>
                 <th>Link de Git</th>
+                <th>Estado</th>
                 <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
@@ -100,6 +109,12 @@
                 <td><input type="text" value="{{ integrante.semestre }}" class="form-control editable" readonly></td>
                 <td><input type="text" value="{{ integrante.correo }}" class="form-control editable" readonly></td>
                 <td><input type="text" value="{{ integrante.link_git }}" class="form-control editable" readonly></td>
+                <td>
+                    <select class="form-select editable estado-select" name="estado" readonly>
+                        <option value="1" {% if integrante.estado == 1 %}selected{% endif %}>Activo</option>
+                        <option value="0" {% if integrante.estado == 0 %}selected{% endif %}>Inactivo</option>
+                    </select>
+                </td>
                 <td>
                     <img src="data:image/jpeg;base64,{{ integrante.imagen }}" alt="Integrante" class="img-fluid table-image">
                     <input type="file" class="form-control edit-image d-none" name="edit_imagen" accept="image/*">
@@ -164,6 +179,7 @@
                 const inputs = row.querySelectorAll('.editable');
                 const imageInput = row.querySelector('.edit-image');
                 const saveButton = row.querySelector('.save-btn');
+                const selectEstado = row.querySelector('.estado-select'); // Selector para el <select> de estado
                 
                 inputs.forEach(input => input.readOnly = false);
                 imageInput.classList.remove('d-none');
@@ -178,6 +194,7 @@
                 const inputs = row.querySelectorAll('.editable');
                 const imageInput = row.querySelector('.edit-image');
                 const editButton = row.querySelector('.edit-btn');
+                const selectEstado = row.querySelector('.estado-select'); // Selector para el <select> de estado
 
                 const formData = new FormData();
                 formData.append('idintegrantes', row.id.split('-')[1]);
@@ -185,6 +202,8 @@
                 formData.append('semestre', inputs[1].value);
                 formData.append('correo', inputs[2].value);
                 formData.append('link_git', inputs[3].value);
+                // Asegúrate de que este índice corresponde al campo de estado correctamente.
+                formData.append('estado', selectEstado.value); // Corrección aquí para el valor de estado
                 if (imageInput.files.length > 0) {
                     formData.append('imagen', imageInput.files[0]);
                 }
