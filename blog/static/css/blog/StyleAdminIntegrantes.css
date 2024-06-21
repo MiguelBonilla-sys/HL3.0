@@ -73,9 +73,9 @@ form.row.g-3.needs-validationPro {
 }
 
 table {
-    margin: auto;
+    margin: 20px auto 0;
     border-collapse: collapse;
-    width: 80%;
+    width: 85%;
 }
 
 th,
