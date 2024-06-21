@@ -35,11 +35,11 @@ def integrantes_admin(request):
     integrantes = Integrantes.objects.order_by('idintegrantes')  # Ordenar los integrantes por su ID
 
     # Crear un objeto Paginator, pasando la lista de integrantes y el número de integrantes por página
-    paginator = Paginator(integrantes, 3)
+    paginator = Paginator(integrantes, 4)
 
-    # Obtener el número de página de la solicitud GET (por defecto es 1)
-    page_number = request.GET.get('page', 1)
-
+    # Obtener el número de página de la solicitud GET, que entre 1 y el número total de páginas
+    page_number = request.GET.get('page')
+    
     # Obtener los integrantes de la página actual
     page_integrantes = paginator.get_page(page_number)
 

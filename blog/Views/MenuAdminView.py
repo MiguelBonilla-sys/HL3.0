@@ -18,7 +18,7 @@ class AdminMenuView(LoginRequiredMixin, TemplateView):
         context['title'] = 'Menu Administrador'  # Añade un título al contexto.
     
         # Obtiene todos los registros de auditoría.
-        audit_logs = AuditLog.objects.all().select_related('user')  # Usa select_related para optimizar la consulta
+        audit_logs = AuditLog.objects.all().select_related('user').order_by('id')  # Usa select_related para optimizar la consulta
 
         # Transforma los registros de auditoría en una lista de diccionarios, incluyendo el nombre del usuario en lugar del ID
         audit_logs = [

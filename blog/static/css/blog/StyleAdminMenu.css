@@ -36,7 +36,7 @@ td {
     white-space: nowrap;
     padding: 10px;
     /* Añade un padding en lugar de un margen a las celdas */
-    max-width: 90%;
+    max-width: 50%;
     /* Limita el ancho de la celda */
 }
 
@@ -47,7 +47,7 @@ tr:nth-child(even) {
 h3 {
     display: flex;
     margin: 20px auto 0;
-    width: 85%;
+    width: 90%;
     /* Aumenta el ancho */
     padding: 20px;
     /* Aumenta el padding */
@@ -69,10 +69,14 @@ h3 {
     white-space: normal;
 }
 
-#paginador_AuditLog .pagination .page-item {
+#paginador_AuditLog {
     display: flex;
     justify-content: center;
-    width: 100%;
+}
+
+#paginador_AuditLog .pagination .page-item {
+    margin: 0;
+    padding: 0;
 }
 
 .affected-record-id {

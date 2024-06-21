@@ -69,7 +69,10 @@
                     <td>{{ log.timestamp }}</td>
                     <td>{{ log.user }}</td>
                     <td>{{ log.table_name }}</td>
-                    <td>{{ log.change_type }}</td>
+                    {% load filters %}
+                    <td>
+                        {{ log.change_type|translate_change_type }}
+                    </td>
                     <td>
                         <div class="short-text">{{ log.modified_data|truncatechars:50 }}</div>
                         <div class="full-text" style="display: none; word-wrap: break-word;">{{ log.modified_data }}</div>
