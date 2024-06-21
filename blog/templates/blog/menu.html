@@ -75,14 +75,14 @@
             </div>
             <!-- Agrega más elementos carousel-item según sea necesario -->
         </div>
-        <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-      </button>
-        <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-      </button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 
     <h3>Integrantes</h3>
@@ -93,74 +93,31 @@
             <div id="carouselExampleControls" class="carousel slide w-80 w-md-50" data-bs-ride="carousel" id="Intengrantes_carousel">
                 <div class="carousel-inner">
                     <!-- Elementos del carrusel -->
-                    <div class="carousel-item active" id="Intengrantes_Intengrantes_CaosuelBack">
+                    {% for integrantes_group in integrantes_groups %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}" id="Intengrantes_Intengrantes_CaosuelBack">
                         <div class="row" id="Integrantes_row">
+                            {% for integrante in integrantes_group %}
                             <div class="col-3" id="Intengrantes_col-3">
-                                <figcaption id="Nombre_Integrante">Usuario 1</figcaption>
-                                <img src="https://th.bing.com/th/id/OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH?rs=1&pid=ImgDetMain" class="d-block w-100" alt="...">
-                                <a id="botton_Correo" href="/" class="nav-link px-2 text-white"><u>Correo</u></a>
-                                <a id="botton_GitHub" href="/" class="nav-link px-2 text-white"><u>Github</u></a>
+                                <figcaption id="Nombre_Integrante">{{ integrante.nombre_integrante }}</figcaption>
+                                <img src="data:image/jpeg;base64,{{ integrante.imagen }}" class="d-block w-100" alt="...">
+                                <a id="botton_Correo" href="{{ integrante.correo }}" class="nav-link px-2 text-white"><u>Correo</u></a>
+                                <a id="botton_GitHub" href="{{ integrante.link_git }}" class="nav-link px-2 text-white" target="_blank"><u>Github</u></a>
                             </div>
-                            <div class="col-3" id="Intengrantes_col-3">
-                                <figcaption id="Nombre_Integrante">Usuario 1</figcaption>
-                                <img src="https://th.bing.com/th/id/OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH?rs=1&pid=ImgDetMain" class="d-block w-100" alt="...">
-                                <a id="botton_Correo" href="/" class="nav-link px-2 text-white"><u>Correo</u></a>
-                                <a id="botton_GitHub" href="/" class="nav-link px-2 text-white" target="_blank"><u>Github</u></a>
-                            </div>
-                            <div class="col-3" id="Intengrantes_col-3">
-                                <figcaption id="Nombre_Integrante">Usuario 1</figcaption>
-                                <img src="https://th.bing.com/th/id/OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH?rs=1&pid=ImgDetMain" class="d-block w-100" alt="...">
-                                <a id="botton_Correo" href="/" class="nav-link px-2 text-white" target="_blank"><u>Correo</u></a>
-                                <a id="botton_GitHub" href="/" class="nav-link px-2 text-white" target="_blank"><u>Github</u></a>
-                            </div>
-                            <div class="col-3" id="Intengrantes_col-3">
-                                <figcaption id="Nombre_Integrante">Usuario 1</figcaption>
-                                <img src="https://th.bing.com/th/id/OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH?rs=1&pid=ImgDetMain" class="d-block w-100" alt="...">
-                                <a id="botton_Correo" href="/" class="nav-link px-2 text-white"><u>Correo</u></a>
-                                <a id="botton_GitHub" href="/" class="nav-link px-2 text-white" target="_blank"><u>Github</u></a>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
-                    <!-- Otros elementos del carrusel -->
-                    <div class="carousel-item" id="Intengrantes_Intengrantes_CaosuelBack">
-                        <div class="row" id="Integrantes_row">
-                            <div class="col-3" id="Intengrantes_col-3">
-                                <figcaption id="Nombre_Integrante">Usuario 13</figcaption>
-                                <img src="https://th.bing.com/th/id/OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH?rs=1&pid=ImgDetMain" class="d-block w-100" alt="...">
-                                <a id="botton_Correo" href="/" class="nav-link px-2 text-white"><u>Correo</u></a>
-                                <a id="botton_GitHub" href="/" class="nav-link px-2 text-white" target="_blank"><u>Github</u></a>
-                            </div>
-                            <div class="col-3" id="Intengrantes_col-3">
-                                <figcaption id="Nombre_Integrante">Usuario 2</figcaption>
-                                <img src="https://th.bing.com/th/id/OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH?rs=1&pid=ImgDetMain" class="d-block w-100" alt="...">
-                                <a id="botton_Correo" href="/" class="nav-link px-2 text-white"><u>Correo</u></a>
-                                <a id="botton_GitHub" href="/" class="nav-link px-2 text-white" target="_blank"><u>Github</u></a>
-                            </div>
-                            <div class="col-3" id="Intengrantes_col-3">
-                                <figcaption id="Nombre_Integrante">Usuario 1</figcaption>
-                                <img src="https://th.bing.com/th/id/OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH?rs=1&pid=ImgDetMain" class="d-block w-100" alt="...">
-                                <a id="botton_Correo" href="/" class="nav-link px-2 text-white"><u>Correo</u></a>
-                                <a id="botton_GitHub" href="/" class="nav-link px-2 text-white" target="_blank"><u>Github</u></a>
-                            </div>
-                            <div class="col-3" id="Intengrantes_col-3">
-                                <figcaption id="Nombre_Integrante">Usuario 1</figcaption>
-                                <img src="https://th.bing.com/th/id/OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH?rs=1&pid=ImgDetMain" class="d-block w-100" alt="...">
-                                <a id="botton_Correo" href="/" class="nav-link px-2 text-white"><u>Correo</u></a>
-                                <a id="botton_GitHub" href="/" class="nav-link px-2 text-white" target="_blank"><u>Github</u></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Otros elementos del carrusel -->
+                    {% endfor %}
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Botones de control del carrusel -->
-        <button id="integrantes_carousel-control-prev" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <!-- Botones de control del carrusel -->
+    <button id="integrantes_carousel-control-prev" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span id="integrantes_carousel-control-prev-icon" class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-        <button id="integrantes_carousel-control-next" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <button id="integrantes_carousel-control-next" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
         <span id="integrantes_carousel-control-next-icon" class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>

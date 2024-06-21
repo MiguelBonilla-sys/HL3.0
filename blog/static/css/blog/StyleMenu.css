@@ -62,7 +62,6 @@ h3 {
     /* Ancho de los botones */
     height: 225px;
     /* Altura de los botones */
-    opacity: 0.01;
     /* Opacidad inicial */
     top: 20%;
 }
@@ -136,23 +135,23 @@ h3 {
 #integrantes_carousel-control-prev,
 #integrantes_carousel-control-next {
     position: absolute;
-    top: 50%;
+    top: 80%;
     /* Centra el botón verticalmente */
     transform: translateY(-50%);
     /* Asegura que el centro del botón esté alineado con el centro vertical del contenedor */
     width: 50px;
     /* Ancho del botón */
-    height: 95px;
+    height: 200px;
     /* Altura del botón */
 }
 
 #integrantes_carousel-control-prev {
-    left: 0;
+    left: 380px;
     /* Posiciona el botón en la esquina izquierda */
 }
 
 #integrantes_carousel-control-next {
-    right: 0;
+    right: 380px;
     /* Posiciona el botón en la esquina derecha */
 }
 
