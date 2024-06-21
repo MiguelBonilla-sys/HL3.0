@@ -99,7 +99,7 @@
                             {% for integrante in integrantes_group %}
                             <div class="col-3" id="Intengrantes_col-3">
                                 <figcaption id="Nombre_Integrante">{{ integrante.nombre_integrante }}</figcaption>
-                                <img src="data:image/jpeg;base64,{{ integrante.imagen }}" class="d-block w-100" alt="...">
+                                <img id="imagen_integrante" src="data:image/jpeg;base64,{{ integrante.imagen }}" class="d-block w-100" alt="...">
                                 <a id="botton_Correo" href="{{ integrante.correo }}" class="nav-link px-2 text-white"><u>Correo</u></a>
                                 <a id="botton_GitHub" href="{{ integrante.link_git }}" class="nav-link px-2 text-white" target="_blank"><u>Github</u></a>
                             </div>

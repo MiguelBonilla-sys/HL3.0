@@ -29,6 +29,11 @@ h3 {
     color: #fff;
 }
 
+#imagen_integrante {
+    border-radius: 15px;
+    margin: 10px auto 0;
+}
+
 #Nombre_Integrante {
     text-align: center;
 }
@@ -163,6 +168,7 @@ h3 {
     background-color: rgba(156, 156, 156, 0.5);
     /* Color del icono dentro del botón */
     height: 280px;
+    border-radius: 15px;
 }
 
 
@@ -171,36 +177,51 @@ h3 {
 @media (max-width: 600px) {
     #integrantes_carousel-control-prev,
     #integrantes_carousel-control-next {
+        position: absolute;
+        top: 80%;
+        transform: translateY(-50%);
         width: 30px;
-        /* Ancho del botón */
         height: 60px;
-        /* Altura del botón */
+    }
+    #integrantes_carousel-control-prev {
+        left: 380px;
+    }
+    #integrantes_carousel-control-next {
+        right: 380px;
     }
 }
-
-
-/* Estilos para pantallas medianas (entre 600px y 1200px) */
 
 @media (min-width: 600px) and (max-width: 1200px) {
     #integrantes_carousel-control-prev,
     #integrantes_carousel-control-next {
+        position: absolute;
+        top: 80%;
+        transform: translateY(-50%);
         width: 40px;
-        /* Ancho del botón */
         height: 80px;
-        /* Altura del botón */
+    }
+    #integrantes_carousel-control-prev {
+        left: 380px;
+    }
+    #integrantes_carousel-control-next {
+        right: 380px;
     }
 }
-
-
-/* Estilos para pantallas grandes (más de 1200px) */
 
 @media (min-width: 1200px) {
     #integrantes_carousel-control-prev,
     #integrantes_carousel-control-next {
+        position: absolute;
+        top: 80%;
+        transform: translateY(-50%);
         width: 50px;
-        /* Ancho del botón */
-        height: 95px;
-        /* Altura del botón */
+        height: 200px;
+    }
+    #integrantes_carousel-control-prev {
+        left: 380px;
+    }
+    #integrantes_carousel-control-next {
+        right: 380px;
     }
     #integrantes_carousel-control-prev-icon,
     #integrantes_carousel-control-next-icon {

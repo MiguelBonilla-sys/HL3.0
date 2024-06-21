@@ -6,7 +6,7 @@ register = template.Library()
 def translate_change_type(change_type):
     translations = {
         'ADD': 'Agregar',
-        'Delete': 'Eliminar',
-        'Update': 'Actualizado'
+        'DELETE': 'Eliminar',
+        'UPDATE': 'Actualizado'
     }
     return translations.get(change_type, change_type)
