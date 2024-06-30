@@ -3,8 +3,8 @@ from blog.Models.IntegrantesModel import Integrantes
 from blog.Models.ProyectosModel import Proyectos
 
 class ProyectosIntegrantesProyecto(models.Model):
-    proyectos = models.ForeignKey(Proyectos, on_delete=models.DO_NOTHING, db_column='proyectos_id')
-    integrante = models.ForeignKey(Integrantes, on_delete=models.DO_NOTHING, db_column='integrantes_id')
+    proyectos = models.OneToOneField(Proyectos, on_delete=models.CASCADE, primary_key=True)
+    integrantes = models.ForeignKey(Integrantes, on_delete=models.CASCADE)
 
     class Meta:
         managed = False

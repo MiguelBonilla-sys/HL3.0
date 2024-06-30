@@ -62,8 +62,8 @@ def integrantes_admin(request):
 @login_required_with_token
 def delete_integrante(request, idintegrantes):
     integrante = get_object_or_404(Integrantes, idintegrantes=idintegrantes)
-    # Asegúrate de que el nombre del campo sea correcto
-    ProyectosIntegrantesProyecto.objects.filter(integrante=idintegrantes).delete()
+    # Asegúrate de que el nombre del campo sea correcto. Se ha corregido 'integrante' por 'integrantes_id'
+    ProyectosIntegrantesProyecto.objects.filter(integrantes_id=idintegrantes).delete()
     integrante.delete()
     return redirect('integrantes_admin')
 

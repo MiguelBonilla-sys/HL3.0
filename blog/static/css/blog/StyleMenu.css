@@ -93,142 +93,44 @@ h3 {
 
 /* Estilos para centrar el carrusel y ajustar su tamaño */
 
-#Intengrantes_CaosuelBack {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-}
-
-
-/* Estilos para centrar el carrusel y ajustar su tamaño */
-
-#Intengrantes_Intengrantes_CaosuelBack {
-    width: 58vw;
-    /* Ancho completo */
-}
-
-
-/* Estilos para centrar el carrusel y ajustar su tamaño */
-
-#Intengrantes_col-3 {
-    max-width: 100%;
-    /* Ancho máximo del 100% */
-    height: auto;
-    /* Altura automática para mantener la proporción */
-    color: #fff;
-    /* Color del texto */
-}
-
-
-/* Estilos específicos para el carrusel */
-
-#Intengrantes_carousel {
-    overflow: hidden;
-    /* Ocultar el contenido que se desborda */
-    border-radius: 10px;
-    /* Borde redondeado para el carrusel */
-}
-
 #Contenedor_Carousel-Integrantes {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
     position: relative;
-    /* Esto permite que los hijos absolutamente posicionados se posicionen en relación a este contenedor */
-    justify-content: center;
-    position: relative;
+    color: #fff;
+    width: 60%;
 }
 
 #integrantes_carousel-control-prev,
 #integrantes_carousel-control-next {
+    background-color: #031c32;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
     position: absolute;
-    top: 80%;
-    /* Centra el botón verticalmente */
+    top: 50%;
     transform: translateY(-50%);
-    /* Asegura que el centro del botón esté alineado con el centro vertical del contenedor */
-    width: 50px;
-    /* Ancho del botón */
-    height: 200px;
-    /* Altura del botón */
+    z-index: 1;
 }
 
 #integrantes_carousel-control-prev {
-    left: 380px;
-    /* Posiciona el botón en la esquina izquierda */
+    left: 10px; /* Ajusta esta posición según sea necesario */
 }
 
 #integrantes_carousel-control-next {
-    right: 380px;
-    /* Posiciona el botón en la esquina derecha */
+    right: 10px; /* Ajusta esta posición según sea necesario */
 }
-
-
-/* Estilos para los iconos de los botones del carrusel */
 
 #integrantes_carousel-control-prev-icon,
 #integrantes_carousel-control-next-icon {
-    background-color: rgba(156, 156, 156, 0.5);
-    /* Color del icono dentro del botón */
-    height: 280px;
-    border-radius: 15px;
-    opacity: 1;
+    padding: 5px;
 }
 
 
-/* Estilos para pantallas pequeñas (menos de 600px) */
 
-@media (max-width: 600px) {
-    #integrantes_carousel-control-prev,
-    #integrantes_carousel-control-next {
-        position: absolute;
-        top: 80%;
-        transform: translateY(-50%);
-        width: 30px;
-        height: 60px;
-    }
-    #integrantes_carousel-control-prev {
-        left: 380px;
-    }
-    #integrantes_carousel-control-next {
-        right: 380px;
-    }
-}
-
-@media (min-width: 600px) and (max-width: 1200px) {
-    #integrantes_carousel-control-prev,
-    #integrantes_carousel-control-next {
-        position: absolute;
-        top: 80%;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 80px;
-    }
-    #integrantes_carousel-control-prev {
-        left: 380px;
-    }
-    #integrantes_carousel-control-next {
-        right: 380px;
-    }
-}
-
-@media (min-width: 1200px) {
-    #integrantes_carousel-control-prev,
-    #integrantes_carousel-control-next {
-        position: absolute;
-        top: 80%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 200px;
-    }
-    #integrantes_carousel-control-prev {
-        left: 380px;
-    }
-    #integrantes_carousel-control-next {
-        right: 380px;
-    }
-    #integrantes_carousel-control-prev-icon,
-    #integrantes_carousel-control-next-icon {
-        height: 280px;
-    }
-}
 
 #botton_Correo {
     display: flex;
@@ -257,42 +159,3 @@ h3 {
 }
 
 
-/* Estilos CSS para dispositivos con pantalla hasta 600px (teléfonos móviles) */
-
-@media only screen and (max-width: 600px) {
-    .carousel-item {
-        flex-direction: column;
-    }
-    .carousel-item .row {
-        flex-direction: column;
-    }
-    .carousel-item .col-md-6 {
-        max-width: 100%;
-        flex-basis: 100%;
-    }
-    .carousel-item .text-left {
-        margin-left: 0;
-        text-align: center;
-    }
-    #Contenedor_Carousel-Integrantes .carousel-item .col-3 {
-        max-width: 100%;
-        flex-basis: 100%;
-        text-align: center;
-    }
-    #Contenedor_Carousel-Integrantes .carousel-item img {
-        margin: 0 auto;
-    }
-}
-
-
-/* Estilos CSS para dispositivos con pantalla hasta 600px (teléfonos móviles) */
-
-@media only screen and (max-width: 600px) {
-    #botton_Correo,
-    #botton_GitHub {
-        width: 90%;
-        /* Aumenta el ancho para dispositivos móviles */
-        height: 8%;
-        /* Aumenta la altura para dispositivos móviles */
-    }
-}

@@ -19,6 +19,9 @@ def cursos_admin(request):
             curso.creador = request.user
             curso.save()
             return redirect('cursos_admin')
+        else:
+            # Aquí se imprime en consola los errores del formulario
+            print("Errores del formulario:", form.errors)
     else:
         form = CursosForm()
 

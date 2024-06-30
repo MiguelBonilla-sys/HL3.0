@@ -79,3 +79,10 @@ tr:nth-child(even) {
 .edit-btn, .save-btn, .btn-danger {
     margin: 5px;
 }
+
+.integrantes-cell .select2 {
+    width: 100%; /* Asegura que el select tome todo el ancho disponible del td */
+    max-width: 100%; /* Limita el ancho máximo para evitar que se desborde */
+    display: block; /* Cambia display a block para que respete el ancho asignado */
+    box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */
+}

@@ -50,12 +50,10 @@
         <input type="hidden" id="action" name="action">
         <div class="formularioPro">
             <div class="row g-3 needs-validationPro" novalidate>
-
                 <div class="col-md-3">
                     <label for="nombre_proyecto" class="form-label">Nombre del proyecto</label>
                     <input type="text" name="nombre_proyecto" class="form-control" id="nombre_proyecto" required>
                 </div>
-                <!-- Modificación aquí para integrantes -->
                 <div class="col-md-3">
                     <label for="integrantes_proyecto" class="form-label">Integrantes</label>
                     <select multiple name="integrantes_proyecto" class="form-control select2" id="integrantes_proyecto" required>
@@ -64,7 +62,6 @@
                         {% endfor %}
                     </select>
                 </div>  
-                <!-- Fin de la modificación -->
                 <div class="col-md-3">
                     <label for="fecha_proyecto" class="form-label">Fecha</label>
                     <input type="date" name="fecha_proyecto" class="form-control" id="fecha_proyecto" required>
@@ -83,7 +80,7 @@
             </div>
         </div>
     </form>
-
+    
     <table>
         <thead>
             <tr>
@@ -102,11 +99,30 @@
                 <form method="POST" action="{% url 'update_proyecto' proyecto.idproyectos %}">
                     {% csrf_token %}
                     <td>{{ proyecto.idproyectos }}</td>
-                    <td><input type="text" name="nombre_proyecto" value="{{ proyecto.nombre_proyecto }}" class="form-control editable" readonly></td>
-                    <td><input type="text" name="intengrantes_proyecto" value="{{ proyecto.intengrantes_proyecto }}" class="form-control editable" readonly></td>
-                    <td><input type="date" name="fecha_proyecto" value="{{ proyecto.fecha_proyecto|date:'Y-m-d'  }}" class="form-control editable" readonly></td>
-                    <td><input type="text" name="link_proyecto" value="{{ proyecto.link_proyecto }}" class="form-control editable" readonly></td>
-                    <td><input type="text" name="description_proyecto" value="{{ proyecto.description_proyecto }}" class="form-control editable" readonly></td>
+                    <td>
+                        <input type="text" name="nombre_proyecto" value="{{ proyecto.nombre_proyecto }}" class="form-control editable" readonly>
+                    </td>
+                    <td class="integrantes-cell">
+                        <select multiple name="integrantes" class="form-control select2 editable" readonly>
+                            {% for integrante in integrantes %}
+                            <option value="{{ integrante.idintegrantes }}" {% if integrante in proyecto.integrantes_proyecto.all %}selected{% endif %}>{{ integrante.nombre_integrante }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="integrantes-names">
+                            {% for integrante in proyecto.integrantes_proyecto.all %}
+                                {{ integrante.integrantes.nombre_integrante }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </span>
+                    </td>
+                    <td>
+                        <input type="date" name="fecha_proyecto" value="{{ proyecto.fecha_proyecto|date:'Y-m-d' }}" class="form-control editable" readonly>
+                    </td>
+                    <td>
+                        <input type="url" name="link_proyecto" value="{{ proyecto.link_proyecto }}" class="form-control editable" readonly>
+                    </td>
+                    <td>
+                        <input type="text" name="description_proyecto" value="{{ proyecto.description_proyecto }}" class="form-control editable" readonly>
+                    </td>
                     <td>
                         <button type="button" class="btn btn-primary edit-btn">Editar</button>
                         <button type="submit" class="btn btn-success save-btn" style="display: none;">Guardar</button>
@@ -117,7 +133,7 @@
             {% endfor %}
         </tbody>
     </table>
-
+    
     <!-- Incluir CSS de Select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     
@@ -126,7 +142,7 @@
     
     <!-- Incluir JS de Select2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         document.querySelectorAll('.edit-btn').forEach(button => {
@@ -135,12 +151,15 @@
                 row.querySelectorAll('.editable').forEach(input => {
                     input.removeAttribute('readonly');
                 });
+                row.querySelector('.select2').removeAttribute('readonly'); // Remove readonly for Select2
+                row.querySelector('.integrantes-names').style.display = 'none';
                 row.querySelector('.save-btn').style.display = 'inline-block';
                 this.style.display = 'none';
             });
         });
-
-        $(document).ready(function() {
+    
+        // Initialize Select2 for dynamically added elements
+        function initializeSelect2() {
             $('.select2').select2({
                 placeholder: "Selecciona integrantes",
                 allowClear: true,
@@ -156,8 +175,22 @@
                     cache: true
                 }
             });
+        }
+    
+        // Call initializeSelect2 on document ready to initialize Select2 on existing elements
+        $(document).ready(function() {
+            initializeSelect2();
+        });
+    
+        // Reinitialize Select2 for elements when new rows are added or edited
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                setTimeout(initializeSelect2, 0); // Reinitialize Select2 after enabling editing
+            });
         });
     </script>
+    
+    
 </body>
 
 </html>
