@@ -8,6 +8,8 @@ class Noticias(models.Model):
     link_noticia = models.CharField(db_column='link_noticia', max_length=250)  # Field name made lowercase.
     description_noticia = models.CharField(db_column='description_noticia', max_length=450)  # Field name made lowercase.
     creador = models.ForeignKey(User, on_delete=models.CASCADE)
+    fuente = models.CharField(max_length=250, blank=True, null=True)
+    imagen_noticia = models.TextField()
     class Meta:
         managed = False
         db_table = 'noticias'

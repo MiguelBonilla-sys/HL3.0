@@ -10,7 +10,7 @@ class AuditLog(models.Model):
     modified_data = models.JSONField(blank=True, null=True)
 
     def __str__(self):
-        return self.username  # o cualquier campo que represente el nombre del usuario
+        return self.user.username  # Asumiendo que AuthUser tiene un campo 'username'
     
     class Meta:
         managed = False

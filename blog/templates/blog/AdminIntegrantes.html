@@ -217,7 +217,6 @@
                 }).then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        alert('Datos actualizados correctamente');
                         location.reload();
                     } else {
                         alert('Error al actualizar los datos: ' + JSON.stringify(data.errors));

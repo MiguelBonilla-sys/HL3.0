@@ -101,7 +101,7 @@
                             <div class="col-3" id="Intengrantes_col-3">
                                 <figcaption id="Nombre_Integrante">{{ integrante.nombre_integrante }}</figcaption>
                                 <img id="imagen_integrante" src="data:image/jpeg;base64,{{ integrante.imagen }}" class="d-block w-100" alt="...">
-                                <a id="botton_Correo" href="{{ integrante.correo }}" class="nav-link px-2 text-white"><u>Correo</u></a>
+                                <a id="botton_Correo" href="javascript:void(0);" class="nav-link px-2 text-white" onclick="copyToClipboard('{{ integrante.correo }}')"><u>Correo</u></a>    
                                 <a id="botton_GitHub" href="{{ integrante.link_git }}" class="nav-link px-2 text-white" target="_blank"><u>Github</u></a>
                             </div>
                             {% endfor %}
@@ -123,6 +123,18 @@
         </button>
     </div>
     
+
+    <div class="toast" id="copyToast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="mr-auto">Notificación</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Correo copiado al portapapeles.
+        </div>
+    </div>
     
 
 
@@ -139,6 +151,16 @@
                     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
                 }
             }
+        }
+
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                $('#copyToast').toast({ delay: 2000 });
+                $('#copyToast').toast('show');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
         }
     </script>
 

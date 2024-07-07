@@ -159,3 +159,13 @@ h3 {
 }
 
 
+
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    min-width: 200px;
+    background-color: #031c32;
+    color:white;
+}
