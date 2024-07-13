@@ -148,6 +148,17 @@
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function() {
                 let row = this.closest('tr');
+                // Alternar visibilidad
+                let selectIntegrantes = row.querySelector('.select2');
+                let integrantesNames = row.querySelector('.integrantes-names');
+                
+                if (selectIntegrantes.style.display === 'none') {
+                    selectIntegrantes.style.display = 'block'; // Mostrar para edición
+                    integrantesNames.style.display = 'none'; // Ocultar nombres
+                } else {
+                    selectIntegrantes.style.display = 'none'; // Ocultar select
+                    integrantesNames.style.display = 'block'; // Mostrar nombres
+                }
                 row.querySelectorAll('.editable').forEach(input => {
                     input.removeAttribute('readonly');
                 });
