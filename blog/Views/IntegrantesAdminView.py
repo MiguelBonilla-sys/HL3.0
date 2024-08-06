@@ -9,12 +9,30 @@ from django.http import JsonResponse
 
 from django.core.paginator import Paginator
 
+from django.shortcuts import render
+from django.core.paginator import Paginator
+
 @login_required_with_token
 def integrantes_admin(request):
     """
-    Vista para administrar los integrantes. Si el método de la solicitud es POST, 
-    se intenta guardar un nuevo integrante. Si el método de la solicitud es GET, 
-    se muestra el formulario para crear un nuevo integrante.
+    Vista para administrar los integrantes. Muestra la lista de integrantes paginada.
+    """
+    integrantes = Integrantes.objects.order_by('idintegrantes')
+    paginator = Paginator(integrantes, 4)
+    page_number = request.GET.get('page')
+    page_integrantes = paginator.get_page(page_number)
+    
+    context = {
+        'integrantes': page_integrantes,
+    }
+    return render(request, 'blog/AdminIntegrantes.html', context)
+
+
+
+@login_required_with_token
+def add_integrante(request):
+    """
+    Vista para agregar un nuevo integrante.
     """
     if request.method == 'POST':
         form = IntegrantesForm(request.POST, request.FILES)
@@ -26,38 +44,43 @@ def integrantes_admin(request):
                 imagen_base64 = base64.b64encode(imagen_data).decode()
                 integrante.imagen = imagen_base64
             
-            # Aquí conviertes el valor del formulario a booleano
             estado_formulario = request.POST.get('estado')
             if estado_formulario == '1':
                 integrante.estado = True
             elif estado_formulario == '0':
                 integrante.estado = False
             
-            integrante.creador = request.user  # Asignar el usuario actual como creador
+            integrante.creador = request.user
             integrante.save()
-            return redirect('integrantes_admin')
+            return redirect('show_integrantes')
         else:
             print("ERROR: " + str(form.errors))
     else:
         form = IntegrantesForm()
     
+    return render(request, 'blog/AddIntegrante.html', {'form': form})
+
+@login_required_with_token
+def show_integrantes(request):
+    """
+    Vista para mostrar la lista de integrantes.
+    """
     if request.is_ajax():
         term = request.GET.get('term', '')
         integrantes_query = Integrantes.objects.filter(nombre_integrante__icontains=term).order_by('idintegrantes')[:10]
         return JsonResponse([{'id': integrante.idintegrantes, 'text': integrante.nombre_integrante} for integrante in integrantes_query], safe=False)
-
+    
     integrantes = Integrantes.objects.order_by('idintegrantes')
     paginator = Paginator(integrantes, 4)
     page_number = request.GET.get('page')
     page_integrantes = paginator.get_page(page_number)
-
+    
+    form = IntegrantesForm()
     context = {
         'integrantes': page_integrantes,
         'form': form
     }
     return render(request, 'blog/AdminIntegrantes.html', context)
-
-
 
 @login_required_with_token
 def delete_integrante(request, idintegrantes):

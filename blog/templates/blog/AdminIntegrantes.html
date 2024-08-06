@@ -46,7 +46,7 @@
     <div class="b-example-divider"></div>
     <h3>Integrantes</h3>
     <div class="form-selectNoti">
-        <form id="IntegrantesForm" method="POST" action="{% url 'integrantes_admin' %}" class="form-control row g-3 needs-validationPro" enctype="multipart/form-data">            
+        <form id="IntegrantesForm" method="POST" action="{% url 'add_integrante' %}" class="form-control row g-3 needs-validationPro" enctype="multipart/form-data">            
             {% csrf_token %}
             <input type="hidden" id="action" name="action">
             <div class="formularioNoti">

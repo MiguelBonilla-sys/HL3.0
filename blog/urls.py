@@ -8,7 +8,7 @@ from blog.Views.ProyectosView import proyectos
 from blog.Views.LoginView import login_view, logout_view
 from blog.Views.MenuAdminView import AdminMenuView
 from blog.Views.NoticiasAdminView import noticias_admin, delete_noticia, update_noticia
-from blog.Views.IntegrantesAdminView import integrantes_admin, delete_integrante, update_integrante
+from blog.Views.IntegrantesAdminView import integrantes_admin, delete_integrante, update_integrante, show_integrantes, add_integrante
 from blog.Views.ProyectosAdminView import proyecto_admin, delete_proyecto, update_proyecto
 from blog.Views.CursosAdminView import cursos_admin, delete_curso, update_curso
 
@@ -31,6 +31,7 @@ urlpatterns = [
     ])),
     path('logout/', logout_view, name='logout'),
     path('audit_log/', AdminMenuView.as_view(), name='audit_log'),
+    
 
     path('audit_log/cursos_admin/', cursos_admin, name='cursos_admin'),
     path('delete_curso/<int:idcursos>/', delete_curso, name='delete_curso'),
@@ -41,6 +42,8 @@ urlpatterns = [
     path('update_noticia/<int:idnoticia>/', update_noticia, name='update_noticia'),
 
     path('audit_log/integrantes_admin/', integrantes_admin, name='integrantes_admin'),
+    path('audit_log/add_integrante/', add_integrante, name='add_integrante'),
+    path('audit_log/show_integrantes/', show_integrantes, name='show_integrantes'),
     path('delete_integrante/<int:idintegrantes>/', delete_integrante, name='delete_integrante'),
     path('update_integrante/<int:idintegrantes>/', update_integrante, name='update_integrante'),
     
